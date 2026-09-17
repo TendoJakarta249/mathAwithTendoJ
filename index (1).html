@@ -1,0 +1,1280 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="light">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Làm chủ Toán A cùng Tendo — Giải tích, Vi tích phân &amp; Toán rời rạc</title>
+<meta name="description" content="Định lý, tính chất, bài tập và lời giải chi tiết cho Toán A — Khoa Toán - Tin học, Trường Đại học Khoa học Tự nhiên (HCMUS)." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
+
+<style>
+/* ============================================================
+   1. TOKEN HỆ THỐNG
+   ============================================================ */
+:root{
+  --green-900:#0b3d2c;
+  --green-700:#12734f;
+  --green-600:#169163;
+  --green-500:#22a06b;
+  --lime-400:#8fd14f;
+  --paper:#ffffff;
+  --paper-2:#f2f8f4;
+  --line:#d9e8df;
+  --ink:#15241d;
+  --ink-2:#4c6459;
+  --shadow:0 1px 2px rgba(11,61,44,.06), 0 8px 24px -16px rgba(11,61,44,.35);
+  --radius:14px;
+  --maxw:1100px;
+  --ff-ui:"Be Vietnam Pro", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --ff-math:"Lora", Georgia, "Times New Roman", serif;
+}
+html[data-theme="dark"]{
+  --green-900:#c9f0dc;
+  --green-700:#5fd6a2;
+  --green-600:#49c692;
+  --green-500:#3cb583;
+  --lime-400:#a6e06a;
+  --paper:#0d1512;
+  --paper-2:#121e19;
+  --line:#22352c;
+  --ink:#e6f2ec;
+  --ink-2:#9db3a8;
+  --shadow:0 1px 2px rgba(0,0,0,.4), 0 10px 30px -18px rgba(0,0,0,.9);
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto}
+  *{animation-duration:.001ms !important; transition-duration:.001ms !important}
+}
+body{
+  margin:0;
+  font-family:var(--ff-ui);
+  font-size:17px;
+  line-height:1.65;
+  color:var(--ink);
+  background:var(--paper);
+  -webkit-font-smoothing:antialiased;
+}
+img{max-width:100%;display:block}
+a{color:var(--green-600)}
+.wrap{max-width:var(--maxw);margin-inline:auto;padding-inline:20px}
+:focus-visible{outline:3px solid var(--lime-400);outline-offset:2px;border-radius:6px}
+
+/* ============================================================
+   2. HEADER + NAVBAR
+   ============================================================ */
+.site-header{
+  position:sticky;top:0;z-index:50;
+  background:color-mix(in srgb, var(--paper) 88%, transparent);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--line);
+}
+.header-top{display:flex;align-items:center;gap:14px;padding:12px 0}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:inherit;min-width:0}
+.brand .logo{width:46px;height:46px;flex:none;border-radius:12px;overflow:hidden;background:var(--green-700)}
+.brand .logo img,.brand .logo svg{width:100%;height:100%;object-fit:cover;display:block}
+.brand h1{font-size:1.06rem;line-height:1.15;margin:0;font-weight:700;letter-spacing:-.01em}
+.brand p{margin:2px 0 0;font-size:.78rem;color:var(--ink-2);line-height:1.3}
+.header-tools{margin-left:auto;display:flex;align-items:center;gap:10px}
+
+.searchbox{position:relative;display:flex;align-items:center}
+.searchbox svg{position:absolute;left:11px;width:17px;height:17px;stroke:var(--ink-2);pointer-events:none}
+#search{
+  font:inherit;font-size:.9rem;color:var(--ink);
+  background:var(--paper-2);border:1px solid var(--line);
+  border-radius:999px;padding:9px 34px 9px 34px;width:240px;
+  transition:width .18s ease, border-color .18s ease;
+}
+#search::placeholder{color:var(--ink-2)}
+#search:focus{border-color:var(--green-500);width:290px;outline:none}
+.clear-search{
+  position:absolute;right:6px;border:0;background:transparent;color:var(--ink-2);
+  font-size:1.1rem;line-height:1;cursor:pointer;padding:4px 7px;border-radius:50%;display:none;
+}
+.clear-search.on{display:block}
+
+.theme-btn{
+  border:1px solid var(--line);background:var(--paper-2);color:var(--ink);
+  width:42px;height:42px;border-radius:12px;cursor:pointer;
+  display:grid;place-items:center;flex:none;
+}
+.theme-btn:hover{border-color:var(--green-500)}
+.theme-btn svg{width:19px;height:19px;stroke:currentColor;fill:none;stroke-width:1.7}
+html[data-theme="light"] .icon-sun{display:none}
+html[data-theme="dark"] .icon-moon{display:none}
+
+.navbar{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none;padding-bottom:2px}
+.navbar::-webkit-scrollbar{display:none}
+.navbar button{
+  font:inherit;font-size:.93rem;font-weight:500;
+  border:0;background:transparent;color:var(--ink-2);
+  padding:11px 14px 13px;cursor:pointer;white-space:nowrap;
+  border-bottom:3px solid transparent;
+}
+.navbar button:hover{color:var(--ink)}
+.navbar button[aria-selected="true"]{color:var(--green-700);border-bottom-color:var(--green-600);font-weight:600}
+
+/* ============================================================
+   3. HERO
+   ============================================================ */
+.hero{
+  padding:56px 0 48px;
+  background:
+    linear-gradient(180deg, color-mix(in srgb, var(--green-500) 9%, var(--paper)), var(--paper)),
+    repeating-linear-gradient(to right, var(--line) 0 1px, transparent 1px 44px);
+  border-bottom:1px solid var(--line);
+}
+.hero-grid{display:grid;gap:34px;grid-template-columns:1.05fr .95fr;align-items:center}
+.hero h2{
+  font-size:clamp(2rem,5.2vw,3.05rem);line-height:1.08;margin:0 0 16px;
+  letter-spacing:-.025em;font-weight:700;
+}
+.hero .lede{font-size:1.06rem;color:var(--ink-2);margin:0 0 26px;max-width:62ch}
+.hero-actions{display:flex;flex-wrap:wrap;gap:10px}
+.btn{
+  font:inherit;font-weight:600;font-size:.94rem;cursor:pointer;
+  border-radius:11px;padding:11px 20px;border:1px solid transparent;text-decoration:none;
+  display:inline-block;
+}
+.btn-primary{background:var(--green-600);color:#fff;border-color:var(--green-600)}
+html[data-theme="dark"] .btn-primary{color:#07130e}
+.btn-primary:hover{background:var(--green-700);border-color:var(--green-700)}
+.btn-ghost{background:transparent;color:var(--ink);border-color:var(--line)}
+.btn-ghost:hover{border-color:var(--green-500);color:var(--green-700)}
+
+.hero-card{
+  background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);
+  padding:24px 24px 20px;box-shadow:var(--shadow);
+}
+.hero-card .tag{font-size:.8rem;color:var(--green-700);font-weight:600;margin:0 0 8px}
+.hero-card .math{font-family:var(--ff-math);font-size:.98rem;line-height:1.85}
+.hero-card .note{font-size:.84rem;color:var(--ink-2);margin:14px 0 0;padding-top:12px;border-top:1px dashed var(--line)}
+
+.quick-links{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:44px}
+.qcard{
+  text-align:left;font:inherit;cursor:pointer;
+  background:var(--paper);border:1px solid var(--line);border-left:4px solid var(--green-500);
+  border-radius:12px;padding:16px 18px;color:inherit;
+}
+.qcard:hover{border-color:var(--green-500);border-left-color:var(--green-700)}
+.qcard strong{display:block;font-size:1rem;margin-bottom:3px}
+.qcard span{font-size:.85rem;color:var(--ink-2)}
+
+/* ============================================================
+   4. KHỐI NỘI DUNG
+   ============================================================ */
+.view{padding:46px 0 80px}
+.view[hidden]{display:none}
+.page-head{margin:0 0 30px;padding-bottom:18px;border-bottom:1px solid var(--line)}
+.page-head h2{font-size:1.85rem;margin:0 0 6px;letter-spacing:-.02em}
+.page-head p{margin:0;color:var(--ink-2);font-size:.97rem}
+
+.block-title{
+  display:flex;align-items:baseline;gap:12px;
+  font-size:1.22rem;margin:44px 0 18px;font-weight:600;
+}
+.block-title::after{content:"";flex:1;height:1px;background:var(--line)}
+.block-title .count{font-size:.82rem;color:var(--ink-2);font-weight:500}
+
+.card{
+  background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);
+  margin-bottom:16px;overflow:hidden;
+}
+.card.is-theorem{border-left:4px solid var(--green-600)}
+.card.is-exercise{border-left:4px solid var(--lime-400)}
+.card-body{padding:20px 22px 4px}
+.card-body h3{
+  font-size:1.02rem;margin:0 0 10px;font-weight:600;color:var(--green-700);
+  letter-spacing:.005em;
+}
+.statement{font-family:var(--ff-math);font-size:1rem;line-height:1.85;color:var(--ink)}
+.statement p{margin:0 0 10px}
+.statement ul,.statement ol{margin:8px 0 10px;padding-left:22px}
+.statement li{margin-bottom:5px}
+
+details.reveal{border-top:1px solid var(--line);margin-top:16px}
+details.reveal > summary{
+  list-style:none;cursor:pointer;
+  padding:13px 22px;margin:0 -22px;
+  font-size:.92rem;font-weight:600;color:var(--green-600);
+  display:flex;align-items:center;gap:8px;user-select:none;
+}
+details.reveal > summary::-webkit-details-marker{display:none}
+details.reveal > summary:hover{background:var(--paper-2)}
+details.reveal > summary .chev{
+  width:15px;height:15px;flex:none;transition:transform .2s ease;
+  border-right:2px solid currentColor;border-bottom:2px solid currentColor;
+  transform:rotate(45deg) scale(.6);margin-bottom:4px;
+}
+details.reveal[open] > summary .chev{transform:rotate(-135deg) scale(.6);margin-bottom:0;margin-top:4px}
+details.reveal[open] > summary{color:var(--ink-2)}
+.proof{
+  padding:4px 22px 22px;margin:0 -22px;background:var(--paper-2);
+  font-family:var(--ff-math);font-size:.97rem;line-height:1.9;
+  border-top:1px solid var(--line);
+}
+.proof-inner{padding-top:16px}
+.proof p{margin:0 0 11px}
+.proof p:last-child{margin-bottom:0}
+.proof ul,.proof ol{padding-left:22px;margin:8px 0 12px}
+.proof .qed{display:inline-block;margin-left:6px;color:var(--green-600);font-weight:700}
+.proof .step{font-weight:600;color:var(--green-700);font-family:var(--ff-ui);font-size:.9rem}
+
+/* ============================================================
+   5. BẢNG ĐỀ THI THỬ
+   ============================================================ */
+.table-wrap{border:1px solid var(--line);border-radius:var(--radius);overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:.95rem;min-width:620px}
+thead th{
+  text-align:left;font-weight:600;font-size:.85rem;color:var(--ink-2);
+  padding:13px 16px;background:var(--paper-2);border-bottom:1px solid var(--line);
+}
+tbody td{padding:14px 16px;border-bottom:1px solid var(--line);vertical-align:middle}
+tbody tr:last-child td{border-bottom:0}
+tbody tr:hover{background:var(--paper-2)}
+.badge{
+  display:inline-block;font-size:.78rem;font-weight:600;padding:4px 11px;border-radius:999px;
+  border:1px solid transparent;white-space:nowrap;
+}
+.badge-answer{background:color-mix(in srgb,var(--green-500) 16%,transparent);color:var(--green-700);border-color:color-mix(in srgb,var(--green-500) 35%,transparent)}
+.badge-official{background:color-mix(in srgb,var(--lime-400) 22%,transparent);color:var(--green-900);border-color:color-mix(in srgb,var(--lime-400) 45%,transparent)}
+html[data-theme="dark"] .badge-official{color:#0d1512}
+
+/* ============================================================
+   6. KẾT QUẢ TÌM KIẾM
+   ============================================================ */
+#view-search .hit{
+  display:block;width:100%;text-align:left;font:inherit;cursor:pointer;
+  background:var(--paper);border:1px solid var(--line);border-left:4px solid var(--green-500);
+  border-radius:12px;padding:15px 18px;margin-bottom:11px;color:inherit;
+}
+#view-search .hit:hover{border-color:var(--green-500)}
+#view-search .hit .cat{font-size:.78rem;color:var(--green-700);font-weight:600;margin-bottom:4px}
+#view-search .hit .ttl{font-weight:600;font-size:1rem;margin-bottom:3px}
+#view-search .hit .snip{font-size:.87rem;color:var(--ink-2);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 22px}
+.chip{
+  font:inherit;font-size:.86rem;cursor:pointer;border-radius:999px;padding:7px 15px;
+  border:1px solid var(--line);background:var(--paper);color:var(--ink-2);
+}
+.chip[aria-pressed="true"]{background:var(--green-600);border-color:var(--green-600);color:#fff;font-weight:600}
+html[data-theme="dark"] .chip[aria-pressed="true"]{color:#07130e}
+.empty{
+  border:1px dashed var(--line);border-radius:var(--radius);padding:36px 22px;text-align:center;color:var(--ink-2);
+}
+.empty strong{display:block;color:var(--ink);margin-bottom:6px;font-size:1.05rem}
+
+mark{background:color-mix(in srgb,var(--lime-400) 55%,transparent);color:inherit;border-radius:3px;padding:0 2px}
+.card.flash{animation:flash 1.6s ease}
+@keyframes flash{0%,40%{background:color-mix(in srgb,var(--lime-400) 24%,transparent)}100%{background:var(--paper)}}
+
+/* ============================================================
+   7. LIÊN HỆ + FOOTER
+   ============================================================ */
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:26px;align-items:start}
+.info-list{list-style:none;margin:0;padding:0}
+.info-list li{padding:14px 0;border-bottom:1px solid var(--line)}
+.info-list li:last-child{border-bottom:0}
+.info-list .k{font-size:.82rem;color:var(--ink-2);margin-bottom:2px}
+.info-list .v{font-weight:500}
+form.contact{background:var(--paper-2);border:1px solid var(--line);border-radius:var(--radius);padding:22px}
+form.contact label{display:block;font-size:.87rem;font-weight:500;margin:0 0 6px}
+form.contact input,form.contact textarea,form.contact select{
+  font:inherit;font-size:.94rem;width:100%;margin-bottom:15px;color:var(--ink);
+  background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:10px 12px;
+}
+form.contact textarea{min-height:120px;resize:vertical}
+form.contact input:focus,form.contact textarea:focus,form.contact select:focus{border-color:var(--green-500);outline:none}
+.form-status{font-size:.88rem;color:var(--green-700);margin:12px 0 0;font-weight:500}
+
+footer{border-top:1px solid var(--line);background:var(--paper-2);padding:28px 0;font-size:.87rem;color:var(--ink-2)}
+.foot-grid{display:flex;flex-wrap:wrap;gap:14px;justify-content:space-between;align-items:center}
+
+/* ============================================================
+   8. RESPONSIVE
+   ============================================================ */
+@media (max-width:900px){
+  .hero-grid{grid-template-columns:1fr;gap:26px}
+  .quick-links{grid-template-columns:1fr}
+  .contact-grid{grid-template-columns:1fr}
+}
+@media (max-width:680px){
+  body{font-size:16px}
+  .header-top{flex-wrap:wrap;gap:10px;padding:10px 0}
+  .header-tools{width:100%;margin-left:0;order:3}
+  .searchbox{flex:1}
+  #search{width:100%}
+  #search:focus{width:100%}
+  .brand h1{font-size:.98rem}
+  .hero{padding:38px 0 34px}
+  .card-body{padding:17px 17px 4px}
+  details.reveal > summary{padding:12px 17px;margin:0 -17px}
+  .proof{padding:4px 17px 18px;margin:0 -17px}
+}
+</style>
+
+<!-- ===== Cấu hình MathJax: gõ LaTeX bằng \( ... \), $...$ hoặc $$...$$ ===== -->
+<script>
+window.MathJax = {
+  tex:{
+    inlineMath:[['\\(','\\)'],['$','$']],
+    displayMath:[['\\[','\\]'],['$$','$$']],
+    processEscapes:true,
+    tags:'none'
+  },
+  options:{ skipHtmlTags:['script','noscript','style','textarea','pre','code'] },
+  startup:{ typeset:false }
+};
+</script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.min.js"></script>
+</head>
+
+<body>
+
+<header class="site-header">
+  <div class="wrap">
+    <div class="header-top">
+      <a class="brand" href="#" data-goto="home">
+        <span class="logo">
+          <!-- THAY LOGO: xoá khối <svg> bên dưới và thay bằng: <img src="logo.png" alt="Logo Tendo"> -->
+          <svg viewBox="0 0 48 48" role="img" aria-label="Logo Tendo">
+            <rect width="48" height="48" fill="#12734f"/>
+            <path d="M28.5 11c-3.2 0-4.6 1.9-5.2 5.1l-2.6 14.4c-.5 2.7-1.1 3.6-2.4 3.6-.9 0-1.5-.5-1.9-1.2l-2.6 2.4c1 1.7 2.7 2.7 5 2.7 3.3 0 4.8-2 5.4-5.3l2.6-14.3c.4-2.4 1-3.4 2.3-3.4.9 0 1.5.5 1.9 1.2l2.6-2.4c-1-1.7-2.7-2.8-5.1-2.8z" fill="#8fd14f"/>
+            <rect x="13" y="22" width="22" height="2.6" rx="1.3" fill="#ffffff"/>
+          </svg>
+        </span>
+        <span>
+          <h1>Làm chủ Toán A cùng Tendo</h1>
+          <p>Định lý gọn, chứng minh rõ, bài tập có lời giải</p>
+        </span>
+      </a>
+
+      <div class="header-tools">
+        <div class="searchbox">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+          <input id="search" type="search" autocomplete="off" placeholder="Tìm định lý, bài tập, đề thi…" aria-label="Tìm kiếm tài liệu" />
+          <button class="clear-search" id="clearSearch" type="button" aria-label="Xoá ô tìm kiếm">&times;</button>
+        </div>
+        <button class="theme-btn" id="themeBtn" type="button" aria-label="Đổi chế độ sáng/tối" title="Chế độ sáng/tối">
+          <svg class="icon-moon" viewBox="0 0 24 24"><path d="M21 12.8A9 9 0 1111.2 3a7 7 0 009.8 9.8z"/></svg>
+          <svg class="icon-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4.2"/><path d="M12 2v2.4M12 19.6V22M2 12h2.4M19.6 12H22M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M19.1 4.9l-1.7 1.7M6.6 17.4l-1.7 1.7"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <nav class="navbar" role="tablist" aria-label="Điều hướng chính">
+      <button role="tab" data-goto="home" aria-selected="true">Trang chủ</button>
+      <button role="tab" data-goto="giaitich" aria-selected="false">Giải tích</button>
+      <button role="tab" data-goto="vitichphan" aria-selected="false">Vi tích phân</button>
+      <button role="tab" data-goto="roirac" aria-selected="false">Toán rời rạc</button>
+      <button role="tab" data-goto="dethi" aria-selected="false">Đề thi thử</button>
+      <button role="tab" data-goto="lienhe" aria-selected="false">Liên hệ</button>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+<!-- ============================ TRANG CHỦ ============================ -->
+<section class="view" id="view-home">
+  <div class="hero">
+    <div class="wrap">
+      <div class="hero-grid">
+        <div>
+          <h2>Toán A không khó, chỉ là chưa ai kể rõ cho bạn nghe.</h2>
+          <p class="lede">Đây là trang web được tạo ra để gom lại những định lý, tính chất hay và bài tập đáng làm nhất của ba học phần Toán A ở Khoa Toán - Tin học, Trường Đại học Khoa học Tự nhiên (HCMUS): Giải tích, Vi tích phân và Toán rời rạc. Mỗi định lý đều kèm chứng minh đầy đủ, mỗi bài tập đều có lời giải chi tiết — nhưng phần đó chỉ mở ra khi bạn chủ động nhấp vào, để bạn còn kịp tự nghĩ trước đã.</p>
+          <div class="hero-actions">
+            <button class="btn btn-primary" data-goto="giaitich" type="button">Bắt đầu với Giải tích</button>
+            <button class="btn btn-ghost" data-goto="dethi" type="button">Xem đề thi thử</button>
+          </div>
+        </div>
+
+        <div class="hero-card">
+          <p class="tag">Định nghĩa nền móng của cả môn học</p>
+          <div class="math">
+            Hàm \(f\) có giới hạn \(L\) tại \(x_0\) khi và chỉ khi
+            \[ \forall \varepsilon \gt 0,\ \exists \delta \gt 0:\ 0 \lt |x - x_0| \lt \delta \Rightarrow |f(x) - L| \lt \varepsilon. \]
+            Đọc xuôi: bạn muốn sai số nhỏ cỡ nào cũng được — \(\varepsilon\); tôi luôn tìm được một khoảng đủ hẹp quanh \(x_0\) — \(\delta\) — để đáp ứng.
+          </div>
+          <p class="note">Nắm chắc câu này, ba phần tư Giải tích còn lại chỉ là hệ quả.</p>
+        </div>
+      </div>
+
+      <div class="quick-links">
+        <button class="qcard" data-goto="giaitich" type="button">
+          <strong>Giải tích</strong>
+          <span>Dãy số, chuỗi, giới hạn, liên tục — nơi \(\varepsilon\) và \(\delta\) lên ngôi.</span>
+        </button>
+        <button class="qcard" data-goto="vitichphan" type="button">
+          <strong>Vi tích phân</strong>
+          <span>Đạo hàm, Taylor, tích phân xác định và suy rộng, ứng dụng hình học.</span>
+        </button>
+        <button class="qcard" data-goto="roirac" type="button">
+          <strong>Toán rời rạc</strong>
+          <span>Quy nạp, số học đồng dư, tổ hợp đếm và lý thuyết đồ thị.</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap" style="margin-top:46px">
+    <h3 class="block-title">Dùng trang này thế nào cho hiệu quả</h3>
+    <div class="card">
+      <div class="card-body" style="padding-bottom:20px">
+        <div class="statement">
+          <ol>
+            <li>Đọc phát biểu định lý trước, che phần chứng minh lại và tự hỏi: giả thiết nào là bắt buộc? Bỏ một giả thiết đi thì phản ví dụ nằm ở đâu?</li>
+            <li>Với bài tập, hãy dành đủ 10 phút vật lộn trước khi bấm “Lời giải chi tiết”. Cái bạn nhớ được là quãng vật lộn đó, không phải lời giải.</li>
+            <li>Gõ từ khoá vào ô tìm kiếm ở góc trên để nhảy thẳng tới một định lý, một dạng bài hoặc một đề thi bất kỳ.</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ GIẢI TÍCH ============================ -->
+<section class="view" id="view-giaitich" hidden>
+  <div class="wrap">
+    <div class="page-head">
+      <h2>Giải tích</h2>
+      <p>Dãy số và chuỗi, giới hạn hàm số, tính liên tục — phần nền của toàn bộ chương trình Toán A.</p>
+    </div>
+
+    <h3 class="block-title">Các định lý quan trọng <span class="count">4 định lý</span></h3>
+
+    <article class="card is-theorem" data-cat="Giải tích" data-view="giaitich" id="gt-dl1">
+      <div class="card-body">
+        <h3>Định lý 1.1 — Tính duy nhất của giới hạn dãy số</h3>
+        <div class="statement">
+          <p>Nếu dãy số thực \((x_n)\) hội tụ thì giới hạn của nó là duy nhất: giả sử \(x_n \to a\) và \(x_n \to b\), khi đó \(a = b\).</p>
+        </div>
+        <details class="reveal">
+          <summary><span class="chev"></span>Chứng minh</summary>
+          <div class="proof"><div class="proof-inner">
+            <p>Phản chứng: giả sử \(a \neq b\), đặt \(\varepsilon = \dfrac{|a-b|}{2} \gt 0\).</p>
+            <p><span class="step">Bước 1.</span> Vì \(x_n \to a\), tồn tại \(N_1\) sao cho \(|x_n - a| \lt \varepsilon\) với mọi \(n \ge N_1\).</p>
+            <p><span class="step">Bước 2.</span> Vì \(x_n \to b\), tồn tại \(N_2\) sao cho \(|x_n - b| \lt \varepsilon\) với mọi \(n \ge N_2\).</p>
+            <p><span class="step">Bước 3.</span> Lấy \(n = \max\{N_1, N_2\}\). Theo bất đẳng thức tam giác:</p>
+            \[ |a-b| \le |a - x_n| + |x_n - b| \lt \varepsilon + \varepsilon = |a-b|. \]
+            <p>Ta thu được \(|a-b| \lt |a-b|\), vô lý. Vậy \(a = b\).<span class="qed">∎</span></p>
+          </div></div>
+        </details>
+      </div>
+    </article>
+
+    <article class="card is-theorem" data-cat="Giải tích" data-view="giaitich" id="gt-dl2">
+      <div class="card-body">
+        <h3>Định lý 1.2 — Nguyên lý kẹp (Squeeze Theorem)</h3>
+        <div class="statement">
+          <p>Cho ba dãy \((a_n), (b_n), (c_n)\) thoả \(a_n \le b_n \le c_n\) với mọi \(n \ge n_0\). Nếu \(\lim a_n = \lim c_n = L\) thì \((b_n)\) cũng hội tụ và \(\lim b_n = L\).</p>
+        </div>
+        <details class="reveal">
+          <summary><span class="chev"></span>Chứng minh</summary>
+          <div class="proof"><div class="proof-inner">
+            <p>Cho trước \(\varepsilon \gt 0\) tuỳ ý.</p>
+            <p><span class="step">Bước 1.</span> Tồn tại \(N_1\) sao cho \(L - \varepsilon \lt a_n \lt L + \varepsilon\) với mọi \(n \ge N_1\), và tồn tại \(N_2\) sao cho \(L - \varepsilon \lt c_n \lt L + \varepsilon\) với mọi \(n \ge N_2\).</p>
+            <p><span class="step">Bước 2.</span> Đặt \(N = \max\{n_0, N_1, N_2\}\). Với mọi \(n \ge N\) ta có chuỗi bất đẳng thức</p>
+            \[ L - \varepsilon \lt a_n \le b_n \le c_n \lt L + \varepsilon, \]
+            <p>tức là \(|b_n - L| \lt \varepsilon\).</p>
+            <p><span class="step">Bước 3.</span> Vì \(\varepsilon\) tuỳ ý nên theo định nghĩa \(b_n \to L\).<span class="qed">∎</span></p>
+            <p><em>Ghi chú.</em> Đây là công cụ mạnh nhất để xử lý các dãy có \(\sin, \cos\) hoặc phần nguyên, chẳng hạn \(\dfrac{\sin n}{n} \to 0\) nhờ kẹp giữa \(-\dfrac{1}{n}\) và \(\dfrac{1}{n}\).</p>
+          </div></div>
+        </details>
+      </div>
+    </article>
+
+    <article class="card is-theorem" data-cat="Giải tích" data-view="giaitich" id="gt-dl3">
+      <div class="card-body">
+        <h3>Định lý 1.3 — Định lý Bolzano–Weierstrass</h3>
+        <div class="statement">
+          <p>Mọi dãy số thực bị chặn đều tồn tại một dãy con hội tụ.</p>
+        </div>
+        <details class="reveal">
+          <summary><span class="chev"></span>Chứng minh</summary>
+          <div class="proof"><div class="proof-inner">
+            <p>Giả sử \((x_n) \subset [a, b]\). Ta dùng phương pháp chia đôi liên tiếp.</p>
+            <p><span class="step">Bước 1.</span> Đặt \(I_0 = [a,b]\). Chia đôi \(I_0\); ít nhất một nửa chứa vô hạn phần tử của dãy — gọi nửa đó là \(I_1\).</p>
+            <p><span class="step">Bước 2.</span> Lặp lại quá trình, ta thu được dãy đoạn lồng nhau \(I_0 \supset I_1 \supset I_2 \supset \cdots\) với \(|I_k| = \dfrac{b-a}{2^k} \to 0\), mỗi \(I_k\) chứa vô hạn phần tử của dãy.</p>
+            <p><span class="step">Bước 3.</span> Theo nguyên lý đoạn lồng nhau (Cantor), tồn tại duy nhất \(c \in \bigcap_{k \ge 0} I_k\).</p>
+            <p><span class="step">Bước 4.</span> Xây dãy con: chọn \(n_1\) với \(x_{n_1} \in I_1\); do \(I_k\) chứa vô hạn chỉ số nên chọn được \(n_k \gt n_{k-1}\) với \(x_{n_k} \in I_k\). Khi đó</p>
+            \[ |x_{n_k} - c| \le |I_k| = \frac{b-a}{2^k} \xrightarrow{\ k \to \infty\ } 0. \]
+            <p>Vậy \(x_{n_k} \to c\).<span class="qed">∎</span></p>
+          </div></div>
+        </details>
+      </div>
+    </article>
+
+    <article class="card is-theorem" data-cat="Giải tích" data-view="giaitich" id="gt-dl4">
+      <div class="card-body">
+        <h3>Định lý 1.4 — Định lý giá trị trung gian</h3>
+        <div class="statement">
+          <p>Cho \(f\) liên tục trên \([a,b]\) và \(y_0\) nằm giữa \(f(a)\) và \(f(b)\). Khi đó tồn tại \(c \in [a,b]\) sao cho \(f(c) = y_0\).</p>
+        </div>
+        <details class="reveal">
+          <summary><span class="chev"></span>Chứng minh</summary>
+          <div class="proof"><div class="proof-inner">
+            <p>Không mất tổng quát, giả sử \(f(a) \lt y_0 \lt f(b)\). Đặt \(g(x) = f(x) - y_0\), khi đó \(g\) liên tục, \(g(a) \lt 0 \lt g(b)\); ta cần chỉ ra \(g\) có nghiệm.</p>
+            <p><span class="step">Bước 1.</span> Đặt \(S = \{x \in [a,b] : g(x) \lt 0\}\). Tập \(S\) khác rỗng (chứa \(a\)) và bị chặn trên bởi \(b\), nên theo tiên đề supremum tồn tại \(c = \sup S\).</p>
+            <p><span class="step">Bước 2.</span> Giả sử \(g(c) \lt 0\). Do \(g\) liên tục tại \(c\), tồn tại \(\delta \gt 0\) sao cho \(g \lt 0\) trên \((c - \delta, c + \delta)\). Vậy có điểm lớn hơn \(c\) vẫn thuộc \(S\) — mâu thuẫn với \(c = \sup S\).</p>
+            <p><span class="step">Bước 3.</span> Giả sử \(g(c) \gt 0\). Tương tự, tồn tại \(\delta \gt 0\) để \(g \gt 0\) trên \((c-\delta, c+\delta)\), suy ra \(c - \delta\) đã là một chặn trên của \(S\) — mâu thuẫn với tính nhỏ nhất của supremum.</p>
+            <p><span class="step">Bước 4.</span> Vậy chỉ còn \(g(c) = 0\), tức \(f(c) = y_0\).<span class="qed">∎</span></p>
+          </div></div>
+        </details>
+      </div>
+    </article>
+
+    <h3 class="block-title">Bài tập &amp; Lời giải <span class="count">3 bài</span></h3>
+
+    <article class="card is-exercise" data-cat="Giải tích" data-view="giaitich" id="gt-bt1">
+      <div class="card-body">
+        <h3>Bài 1.1 — Giới hạn của căn bậc \(n\)</h3>
+        <div class="statement">
+          <p>Chứng minh rằng \(\displaystyle \lim_{n \to \infty} \sqrt[n]{n} = 1\).</p>
+        </div>
+        <details class="reveal">
+          <summary><span class="chev"></span>Lời giải chi tiết</summary>
+          <div class="proof"><div class="proof-inner">
+            <p>Đặt \(a_n = \sqrt[n]{n} - 1 \ge 0\) với \(n \ge 1\), tức \(n = (1 + a_n)^n\).</p>
+            <p><span class="step">Bước 1.</span> Khai triển nhị thức Newton, giữ lại số hạng thứ ba (mọi số hạng đều không âm):</p>
+            \[ n = (1+a_n)^n \ge \binom{n}{2} a_n^2 = \frac{n(n-1)}{2} a_n^2 \qquad (n \ge 2). \]
+            <p><span class="step">Bước 2.</span> Chia hai vế cho \(n\) rồi rút \(a_n\):</p>
+            \[ 1 \ge \frac{n-1}{2} a_n^2 \;\Longrightarrow\; 0 \le a_n \le \sqrt{\frac{2}{n-1}}. \]
+            <p><span class="step">Bước 3.</span> Vì \(\sqrt{\dfrac{2}{n-1}} \to 0\), nguyên lý kẹp cho \(a_n \to 0\), do đó \(\sqrt[n]{n} = 1 + a_n \to 1\).<span class="qed">∎</span></p>
+            <p><em>Bẫy thường gặp.</em> Không được viết \(\sqrt[n]{n} \to 1\) chỉ vì "số mũ \(\frac1n \to 0\)" — đó là dạng vô định \(\infty^0\), phải chứng minh đàng hoàng.</p>
+          </div></div>
+        </details>
+      </div>
+    </article>
+
+    <article class="card is-exercise" data-cat="Giải tích" data-view="giaitich" id="gt-bt2">
+      <div class="card-body">
+        <h3>Bài 1.2 — Dãy truy hồi hội tụ</h3>
+        <div class="statement">
+          <p>Cho \(x_1 = 1\) và \(x_{n+1} = \sqrt{2 + x_n}\) với mọi \(n \ge 1\). Chứng minh dãy \((x_n)\) hội tụ và tìm giới hạn.</p>
+        </div>
+        <details class="reveal">
+          <summary><span class="chev"></span>Lời giải chi tiết</summary>
+          <div class="proof"><div class="proof-inner">
+            <p><span class="step">Bước 1 — Bị chặn.</span> Ta chứng minh bằng quy nạp rằng \(1 \le x_n \lt 2\). Thật vậy \(x_1 = 1\) thoả. Nếu \(1 \le x_n \lt 2\) thì</p>
+            \[ x_{n+1} = \sqrt{2 + x_n} \lt \sqrt{2+2} = 2, \qquad x_{n+1} = \sqrt{2+x_n} \ge \sqrt{3} \gt 1. \]
+            <p><span class="step">Bước 2 — Tăng.</span> Xét hiệu bình phương:</p>
+            \[ x_{n+1}^2 - x_n^2 = 2 + x_n - x_n^2 = -(x_n - 2)(x_n + 1) \gt 0 \ \text{ vì } 1 \le x_n \lt 2. \]
+            <p>Do các số hạng dương nên \(x_{n+1} \gt x_n\): dãy tăng ngặt.</p>
+            <p><span class="step">Bước 3 — Kết luận hội tụ.</span> Dãy tăng và bị chặn trên nên hội tụ; gọi \(L = \lim x_n \in [1,2]\).</p>
+            <p><span class="step">Bước 4 — Tìm \(L\).</span> Lấy giới hạn hai vế hệ thức truy hồi (hàm \(t \mapsto \sqrt{2+t}\) liên tục):</p>
+            \[ L = \sqrt{2+L} \;\Longrightarrow\; L^2 - L - 2 = 0 \;\Longrightarrow\; L = 2 \ \text{ hoặc } \ L = -1. \]
+            <p>Do \(L \ge 1\) nên \(L = 2\).<span class="qed">∎</span></p>
+          </div></div>
+        </details>
+      </div>
+    </article>
+
+    <article class="card is-exercise" data-cat="Giải tích" data-view="giaitich" id="gt-bt3">
+      <div class="card-body">
+        <h3>Bài 1.3 — Khảo sát sự hội tụ của chuỗi</h3>
+        <div class="statement">
+          <p>Xét sự hội tụ của chuỗi \(\displaystyle \sum_{n=1}^{\infty} \frac{n!}{n^n}\).</p>
+        </div>
+        <details class="reveal">
+          <summary><span class="chev"></span>Lời giải chi tiết</summary>
+          <div class="proof"><div class="proof-inner">
+            <p>Đặt \(u_n = \dfrac{n!}{n^n} \gt 0\). Dùng tiêu chuẩn tỉ số (D'Alembert):</p>
+            \[ \frac{u_{n+1}}{u_n} = \frac{(n+1)!}{(n+1)^{n+1}} \cdot \frac{n^n}{n!} = \frac{(n+1)\, n^n}{(n+1)^{n+1}} = \left( \frac{n}{n+1} \right)^{n} = \frac{1}{\left(1 + \frac1n\right)^{n}}. \]
+            <p>Cho \(n \to \infty\), mẫu số tiến về \(e\), nên</p>
+            \[ \lim_{n\to\infty} \frac{u_{n+1}}{u_n} = \frac{1}{e} \approx 0{,}3679 \lt 1. \]
+            <p>Theo tiêu chuẩn tỉ số, chuỗi hội tụ.<span class="qed">∎</span></p>
+            <p><em>Mở rộng.</em> Cũng từ đây suy ra \(\dfrac{n!}{n^n} \to 0\), một kết quả hay dùng khi so sánh tốc độ tăng của \(n!\) và \(n^n\).</p>
+          </div></div>
+        </details>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ============================ VI TÍCH PHÂN ============================ -->
+<section class="view" id="view-vitichphan" hidden>
+  <div class="wrap">
+    <div class="page-head">
+      <h2>Vi tích phân</h2>
+      <p>Đạo hàm và các định lý giá trị trung bình, khai triển Taylor, tích phân xác định — suy rộng và ứng dụng.</p>
+    </div>
+
+    <h3 class="block-title">Các định lý quan trọng <span class="count">4 định lý</span></h3>
+
+    <article class="card is-theorem" data-cat="Vi tích phân" data-view="vitichphan" id="vtp-dl1">
+      <div class="card-body">
+        <h3>Định lý 2.1 — Định lý Rolle</h3>
+        <div class="statement">
+          <p>Cho \(f\) liên tục trên \([a,b]\), khả vi trên \((a,b)\) và \(f(a) = f(b)\). Khi đó tồn tại \(c \in (a,b)\) sao cho \(f'(c) = 0\).</p>
+        </div>
+        <details class="reveal">
+          <summary><span class="chev"></span>Chứng minh</summary>
+          <div class="proof"><div class="proof-inner">
+            <p><span class="step">Bước 1.</span> Vì \(f\) liên tục trên đoạn compact \([a,b]\), theo định lý Weierstrass \(f\) đạt giá trị lớn nhất \(M\) và nhỏ nhất \(m\) trên \([a,b]\).</p>
+            <p><span class="step">Bước 2.</span> Nếu \(M = m\) thì \(f\) là hàm hằng, khi đó \(f'(x) = 0\) với mọi \(x \in (a,b)\) và mọi điểm đều thoả.</p>
+            <p><span class="step">Bước 3.</span> Nếu \(M \gt m\): do \(f(a) = f(b)\), ít nhất một trong hai giá trị \(M, m\) phải đạt tại một điểm trong \(c \in (a,b)\).</p>
+            <p><span class="step">Bước 4.</span> Giả sử \(f(c) = M\) là cực đại địa phương. Với \(h \gt 0\) đủ nhỏ, \(\dfrac{f(c+h) - f(c)}{h} \le 0\), cho \(h \to 0^+\) được \(f'(c) \le 0\). Với \(h \lt 0\), \(\dfrac{f(c+h)-f(c)}{h} \ge 0\), cho \(h \to 0^-\) được \(f'(c) \ge 0\). Vậy \(f'(c) = 0\).<span class="qed">∎</span></p>
+          </div></div>
+        </details>
+      </div>
+    </article>
+
+    <article class="card is-theorem" data-cat="Vi tích phân" data-view="vitichphan" id="vtp-dl2">
+      <div class="card-body">
+        <h3>Định lý 2.2 — Định lý Lagrange (giá trị trung bình)</h3>
+        <div class="statement">
+          <p>Cho \(f\) liên tục trên \([a,b]\) và khả vi trên \((a,b)\). Khi đó tồn tại \(c \in (a,b)\) sao cho</p>
+          \[ f'(c) = \frac{f(b) - f(a)}{b - a}. \]
+        </div>
+        <details class="reveal">
+          <summary><span class="chev"></span>Chứng minh</summary>
+          <div class="proof"><div class="proof-inner">
+            <p><span class="step">Bước 1 — Dựng hàm phụ.</span> Đặt</p>
+            \[ g(x) = f(x) - f(a) - \frac{f(b)-f(a)}{b-a}\,(x - a). \]
+            <p>Về mặt hình học, \(g\) đo khoảng cách theo phương đứng từ đồ thị \(f\) tới dây cung nối \((a, f(a))\) và \((b, f(b))\).</p>
+            <p><span class="step">Bước 2.</span> Hàm \(g\) liên tục trên \([a,b]\), khả vi trên \((a,b)\), và</p>
+            \[ g(a) = 0, \qquad g(b) = f(b) - f(a) - \frac{f(b)-f(a)}{b-a}(b-a) = 0. \]
+            <p><span class="step">Bước 3.</span> Áp dụng định lý Rolle cho \(g\): tồn tại \(c \in (a,b)\) với \(g'(c) = 0\), tức</p>
+            \[ f'(c) - \frac{f(b)-f(a)}{b-a} = 0. \]
+            <p>Đó chính là điều phải chứng minh.<span class="qed">∎</span></p>
+            <p><em>Hệ quả hay dùng.</em> Nếu \(f'(x) = 0\) trên một khoảng thì \(f\) hằng trên khoảng đó; nếu \(f' \gt 0\) thì \(f\) tăng ngặt.</p>
+          </div></div>
+        </details>
+      </div>
+    </article>
+
+    <article class="card is-theorem" data-cat="Vi tích phân" data-view="vitichphan" id="vtp-dl3">
+      <div class="card-body">
+        <h3>Định lý 2.3 — Định lý cơ bản của phép tính vi tích phân</h3>
+        <div class="statement">
+          <p>Cho \(f\) liên tục trên \([a,b]\). Đặt \(F(x) = \displaystyle\int_a^x f(t)\,dt\). Khi đó \(F\) khả vi trên \([a,b]\) và \(F'(x) = f(x)\). Hệ quả: nếu \(G\) là một nguyên hàm bất kỳ của \(f\) thì</p>
+          \[ \int_a^b f(x)\,dx = G(b) - G(a). \]
+        </div>
+        <details class="reveal">
+          <summary><span class="chev"></span>Chứng minh</summary>
+          <div class="proof"><div class="proof-inner">
+            <p><span class="step">Bước 1.</span> Với \(h \neq 0\) đủ nhỏ, theo tính cộng tính của tích phân:</p>
+            \[ \frac{F(x+h) - F(x)}{h} = \frac{1}{h}\int_x^{x+h} f(t)\,dt. \]
+            <p><span class="step">Bước 2.</span> Vì \(f\) liên tục trên đoạn giữa \(x\) và \(x+h\), theo định lý giá trị trung bình cho tích phân tồn tại \(\xi_h\) nằm giữa \(x\) và \(x+h\) sao cho</p>
+            \[ \frac{1}{h}\int_x^{x+h} f(t)\,dt = f(\xi_h). \]
+            <p><span class="step">Bước 3.</span> Khi \(h \to 0\) thì \(\xi_h \to x\); do \(f\) liên tục tại \(x\) nên \(f(\xi_h) \to f(x)\). Vậy \(F'(x) = f(x)\).</p>
+            <p><span class="step">Bước 4 — Hệ quả.</span> Nếu \(G' = f\) thì \((G - F)' = 0\) trên \([a,b]\), nên theo hệ quả của định lý Lagrange \(G - F\) là hằng số \(k\). Thay \(x = a\) được \(k = G(a)\) (vì \(F(a)=0\)), thay \(x = b\) được \(G(b) = F(b) + G(a)\), tức \(F(b) = G(b) - G(a)\).<span class="qed">∎</span></p>
+          </div></div>
+        </details>
+      </div>
+    </article>
+
+    <article class="card is-theorem" data-cat="Vi tích phân" data-view="vitichphan" id="vtp-dl4">
+      <div class="card-body">
+        <h3>Định lý 2.4 — Khai triển Taylor với phần dư Lagrange</h3>
+        <div class="statement">
+          <p>Cho \(f\) khả vi \(n+1\) lần trên một khoảng chứa \(a\) và \(x\). Khi đó tồn tại \(\xi\) nằm giữa \(a\) và \(x\) sao cho</p>
+          \[ f(x) = \sum_{k=0}^{n} \frac{f^{(k)}(a)}{k!}(x-a)^k + \frac{f^{(n+1)}(\xi)}{(n+1)!}(x-a)^{n+1}. \]
+        </div>
+        <details class="reveal">
+          <summary><span class="chev"></span>Chứng minh</summary>
+          <div class="proof"><div class="proof-inner">
+            <p><span class="step">Bước 1.</span> Cố định \(x \neq a\). Gọi \(P_n\) là đa thức Taylor bậc \(n\) tại \(a\) và chọn số \(M\) sao cho</p>
+            \[ f(x) = P_n(x) + M\,(x-a)^{n+1}. \]
+            <p>(Điều này luôn làm được vì \((x-a)^{n+1} \neq 0\); mục tiêu là chứng minh \(M = \dfrac{f^{(n+1)}(\xi)}{(n+1)!}\).)</p>
+            <p><span class="step">Bước 2.</span> Đặt hàm phụ \(g(t) = f(t) - P_n(t) - M (t-a)^{n+1}\). Theo cách dựng, \(g(x) = 0\) và</p>
+            \[ g(a) = g'(a) = \cdots = g^{(n)}(a) = 0, \]
+            <p>vì \(P_n\) khớp với \(f\) tới đạo hàm cấp \(n\) tại \(a\).</p>
+            <p><span class="step">Bước 3 — Rolle lặp.</span> Vì \(g(a) = g(x) = 0\), có \(\xi_1\) giữa \(a\) và \(x\) với \(g'(\xi_1) = 0\). Vì \(g'(a) = g'(\xi_1) = 0\), có \(\xi_2\) giữa \(a\) và \(\xi_1\) với \(g''(\xi_2) = 0\). Lặp \(n+1\) lần, thu được \(\xi = \xi_{n+1}\) với \(g^{(n+1)}(\xi) = 0\).</p>
+            <p><span class="step">Bước 4.</span> Do \(P_n\) có bậc \(\le n\) nên \(P_n^{(n+1)} \equiv 0\), suy ra</p>
+            \[ 0 = g^{(n+1)}(\xi) = f^{(n+1)}(\xi) - M\,(n+1)! \;\Longrightarrow\; M = \frac{f^{(n+1)}(\xi)}{(n+1)!}. \]
+            <p>Thay vào Bước 1 ta có điều phải chứng minh.<span class="qed">∎</span></p>
+          </div></div>
+        </details>
+      </div>
+    </article>
+
+    <h3 class="block-title">Bài tập &amp; Lời giải <span class="count">3 bài</span></h3>
+
+    <article class="card is-exercise" data-cat="Vi tích phân" data-view="vitichphan" id="vtp-bt1">
+      <div class="card-body">
+        <h3>Bài 2.1 — Giới hạn dạng vô định</h3>
+        <div class="statement">
+          <p>Tính \(\displaystyle \lim_{x \to 0} \frac{x - \sin x}{x^3}\).</p>
+        </div>
+        <details class="reveal">
+          <summary><span class="chev"></span>Lời giải chi tiết</summary>
+          <div class="proof"><div class="proof-inner">
+            <p><span class="step">Cách 1 — Khai triển Maclaurin.</span> Ta có \(\sin x = x - \dfrac{x^3}{6} + o(x^3)\) khi \(x \to 0\), do đó</p>
+            \[ \frac{x - \sin x}{x^3} = \frac{\frac{x^3}{6} + o(x^3)}{x^3} = \frac{1}{6} + o(1) \xrightarrow{\ x \to 0\ } \frac{1}{6}. \]
+            <p><span class="step">Cách 2 — L'Hôpital ba lần.</span> Cả tử và mẫu đều tiến về \(0\):</p>
+            \[ \lim_{x\to 0}\frac{x - \sin x}{x^3} = \lim_{x\to 0}\frac{1 - \cos x}{3x^2} = \lim_{x\to 0}\frac{\sin x}{6x} = \lim_{x\to 0}\frac{\cos x}{6} = \frac{1}{6}. \]
+            <p>Ở mỗi bước đều phải kiểm tra lại dạng vô định \(\dfrac00\) trước khi áp dụng tiếp.<span class="qed">∎</span></p>
+            <p><em>Lưu ý.</em> Khai triển Taylor thường nhanh và an toàn hơn L'Hôpital khi bậc vô định cao.</p>
+          </div></div>
+        </details>
+      </div>
+    </article>
+
+    <article class="card is-exercise" data-cat="Vi tích phân" data-view="vitichphan" id="vtp-bt2">
+      <div class="card-body">
+        <h3>Bài 2.2 — Tích phân từng phần</h3>
+        <div class="statement">
+          <p>Tính \(\displaystyle I = \int_0^{1} x^2 e^{x}\,dx\).</p>
+        </div>
+        <details class="reveal">
+          <summary><span class="chev"></span>Lời giải chi tiết</summary>
+          <div class="proof"><div class="proof-inner">
+            <p><span class="step">Lần 1.</span> Đặt \(u = x^2,\ dv = e^x dx \Rightarrow du = 2x\,dx,\ v = e^x\):</p>
+            \[ I = \Big[ x^2 e^x \Big]_0^1 - 2\int_0^1 x e^x dx = e - 2J, \quad \text{với } J = \int_0^1 x e^x dx. \]
+            <p><span class="step">Lần 2.</span> Đặt \(u = x,\ dv = e^x dx\):</p>
+            \[ J = \Big[ x e^x \Big]_0^1 - \int_0^1 e^x dx = e - (e - 1) = 1. \]
+            <p><span class="step">Kết luận.</span></p>
+            \[ I = e - 2 \cdot 1 = e - 2 \approx 0{,}7183. \]
+            <p><span class="qed">∎</span></p>
+            <p><em>Mẹo chọn \(u\).</em> Theo thứ tự ưu tiên LIATE (Logarit – Inverse – Đại số – Lượng giác – Exponential), ở đây \(x^2\) là đa thức nên chọn làm \(u\) để hạ bậc dần.</p>
+          </div></div>
+        </details>
+      </div>
+    </article>
+
+    <article class="card is-exercise" data-cat="Vi tích phân" data-view="vitichphan" id="vtp-bt3">
+      <div class="card-body">
+        <h3>Bài 2.3 — Tích phân suy rộng</h3>
+        <div class="statement">
+          <p>Khảo sát sự hội tụ của \(\displaystyle \int_1^{+\infty} \frac{dx}{x^{p}}\) theo tham số \(p \gt 0\).</p>
+        </div>
+        <details class="reveal">
+          <summary><span class="chev"></span>Lời giải chi tiết</summary>
+          <div class="proof"><div class="proof-inner">
+            <p>Xét tích phân trên đoạn hữu hạn rồi cho cận tiến ra vô cực.</p>
+            <p><span class="step">Trường hợp \(p \neq 1\).</span></p>
+            \[ \int_1^{b} x^{-p}dx = \left[ \frac{x^{1-p}}{1-p} \right]_1^{b} = \frac{b^{1-p} - 1}{1-p}. \]
+            <p>Nếu \(p \gt 1\) thì \(1-p \lt 0\) nên \(b^{1-p} \to 0\), tích phân hội tụ về \(\dfrac{1}{p-1}\). Nếu \(0 \lt p \lt 1\) thì \(b^{1-p} \to +\infty\), tích phân phân kỳ.</p>
+            <p><span class="step">Trường hợp \(p = 1\).</span></p>
+            \[ \int_1^{b} \frac{dx}{x} = \ln b \xrightarrow{\ b \to +\infty\ } +\infty \quad (\text{phân kỳ}). \]
+            <p><span class="step">Kết luận.</span> Tích phân hội tụ khi và chỉ khi \(p \gt 1\), và khi đó giá trị bằng \(\dfrac{1}{p-1}\).<span class="qed">∎</span></p>
+            <p><em>So sánh.</em> Kết quả này đối ngẫu với chuỗi \(\sum \frac{1}{n^p}\) — cũng hội tụ đúng khi \(p \gt 1\), theo tiêu chuẩn tích phân Cauchy.</p>
+          </div></div>
+        </details>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ============================ TOÁN RỜI RẠC ============================ -->
+<section class="view" id="view-roirac" hidden>
+  <div class="wrap">
+    <div class="page-head">
+      <h2>Toán rời rạc</h2>
+      <p>Quy nạp và đệ quy, số học đồng dư, tổ hợp đếm và lý thuyết đồ thị.</p>
+    </div>
+
+    <h3 class="block-title">Các định lý quan trọng <span class="count">4 định lý</span></h3>
+
+    <article class="card is-theorem" data-cat="Toán rời rạc" data-view="roirac" id="rr-dl1">
+      <div class="card-body">
+        <h3>Định lý 3.1 — Thuật toán chia Euclid</h3>
+        <div class="statement">
+          <p>Với mọi \(a \in \mathbb{Z}\) và \(b \in \mathbb{Z}^{+}\), tồn tại duy nhất cặp số nguyên \(q, r\) sao cho</p>
+          \[ a = bq + r, \qquad 0 \le r \lt b. \]
+        </div>
+        <details class="reveal">
+          <summary><span class="chev"></span>Chứng minh</summary>
+          <div class="proof"><div class="proof-inner">
+            <p><span class="step">Tồn tại.</span> Xét tập \(S = \{ a - bk : k \in \mathbb{Z},\ a - bk \ge 0 \}\). Tập này khác rỗng (chọn \(k = -|a|\) thì \(a + b|a| \ge 0\)). Theo nguyên lý sắp thứ tự tốt, \(S\) có phần tử nhỏ nhất \(r = a - bq \ge 0\).</p>
+            <p>Nếu \(r \ge b\) thì \(r - b = a - b(q+1) \ge 0\) cũng thuộc \(S\) và nhỏ hơn \(r\) — mâu thuẫn. Vậy \(0 \le r \lt b\).</p>
+            <p><span class="step">Duy nhất.</span> Giả sử \(a = bq_1 + r_1 = bq_2 + r_2\) với \(0 \le r_1, r_2 \lt b\). Trừ vế theo vế:</p>
+            \[ b(q_1 - q_2) = r_2 - r_1, \qquad |r_2 - r_1| \lt b. \]
+            <p>Vế trái là bội của \(b\) nhưng có trị tuyệt đối nhỏ hơn \(b\), nên phải bằng \(0\). Suy ra \(r_1 = r_2\) và \(q_1 = q_2\).<span class="qed">∎</span></p>
+          </div></div>
+        </details>
+      </div>
+    </article>
+
+    <article class="card is-theorem" data-cat="Toán rời rạc" data-view="roirac" id="rr-dl2">
+      <div class="card-body">
+        <h3>Định lý 3.2 — Nguyên lý Dirichlet (chuồng bồ câu)</h3>
+        <div class="statement">
+          <p>Nếu xếp \(n\) vật vào \(k\) hộp với \(n \gt k\) thì tồn tại ít nhất một hộp chứa từ \(\left\lceil \dfrac{n}{k} \right\rceil\) vật trở lên.</p>
+        </div>
+        <details class="reveal">
+          <summary><span class="chev"></span>Chứng minh</summary>
+          <div class="proof"><div class="proof-inner">
+            <p>Phản chứng: giả sử mọi hộp đều chứa nhiều nhất \(\left\lceil \dfrac{n}{k} \right\rceil - 1\) vật.</p>
+            <p><span class="step">Bước 1.</span> Tổng số vật khi đó thoả</p>
+            \[ n \le k \left( \left\lceil \frac{n}{k} \right\rceil - 1 \right). \]
+            <p><span class="step">Bước 2.</span> Theo tính chất trần, \(\left\lceil \dfrac{n}{k} \right\rceil \lt \dfrac{n}{k} + 1\), do đó</p>
+            \[ k\left( \left\lceil \frac{n}{k} \right\rceil - 1 \right) \lt k \cdot \frac{n}{k} = n. \]
+            <p><span class="step">Bước 3.</span> Ghép hai bất đẳng thức: \(n \lt n\), vô lý. Vậy phải có một hộp chứa ít nhất \(\left\lceil \dfrac{n}{k} \right\rceil\) vật.<span class="qed">∎</span></p>
+            <p><em>Ví dụ nhanh.</em> Trong \(13\) người luôn có ít nhất \(2\) người sinh cùng tháng, vì \(\left\lceil \frac{13}{12} \right\rceil = 2\).</p>
+          </div></div>
+        </details>
+      </div>
+    </article>
+
+    <article class="card is-theorem" data-cat="Toán rời rạc" data-view="roirac" id="rr-dl3">
+      <div class="card-body">
+        <h3>Định lý 3.3 — Định lý nhỏ Fermat</h3>
+        <div class="statement">
+          <p>Cho \(p\) là số nguyên tố và \(a\) là số nguyên với \(\gcd(a,p) = 1\). Khi đó</p>
+          \[ a^{p-1} \equiv 1 \pmod p. \]
+        </div>
+        <details class="reveal">
+          <summary><span class="chev"></span>Chứng minh</summary>
+          <div class="proof"><div class="proof-inner">
+            <p><span class="step">Bước 1.</span> Xét \(p-1\) số \(a, 2a, 3a, \dots, (p-1)a\). Ta chứng minh chúng đôi một khác nhau theo modulo \(p\): nếu \(ia \equiv ja \pmod p\) thì \(p \mid a(i-j)\); do \(\gcd(a,p)=1\) nên \(p \mid (i-j)\), mà \(|i - j| \lt p\) nên \(i = j\).</p>
+            <p><span class="step">Bước 2.</span> Không số nào chia hết cho \(p\) (vì \(\gcd(a,p)=1\) và \(1 \le i \le p-1\)). Vậy tập số dư của chúng chính là một hoán vị của \(\{1, 2, \dots, p-1\}\).</p>
+            <p><span class="step">Bước 3.</span> Nhân tất cả lại:</p>
+            \[ a \cdot 2a \cdots (p-1)a \equiv 1 \cdot 2 \cdots (p-1) \pmod p, \]
+            \[ a^{p-1}(p-1)! \equiv (p-1)! \pmod p. \]
+            <p><span class="step">Bước 4.</span> Vì \(\gcd((p-1)!, p) = 1\), ta được rút gọn hai vế cho \((p-1)!\), thu được \(a^{p-1} \equiv 1 \pmod p\).<span class="qed">∎</span></p>
+          </div></div>
+        </details>
+      </div>
+    </article>
+
+    <article class="card is-theorem" data-cat="Toán rời rạc" data-view="roirac" id="rr-dl4">
+      <div class="card-body">
+        <h3>Định lý 3.4 — Bổ đề bắt tay</h3>
+        <div class="statement">
+          <p>Trong mọi đồ thị vô hướng \(G = (V, E)\), tổng bậc của các đỉnh bằng hai lần số cạnh:</p>
+          \[ \sum_{v \in V} \deg(v) = 2|E|. \]
+          <p>Hệ quả: số đỉnh bậc lẻ luôn là số chẵn.</p>
+        </div>
+        <details class="reveal">
+          <summary><span class="chev"></span>Chứng minh</summary>
+          <div class="proof"><div class="proof-inner">
+            <p><span class="step">Bước 1 — Đếm hai lần.</span> Đếm số cặp \((v, e)\) với \(v\) là đỉnh thuộc cạnh \(e\).</p>
+            <p>Đếm theo đỉnh: mỗi đỉnh \(v\) tham gia đúng \(\deg(v)\) cặp, tổng cộng \(\sum_{v} \deg(v)\).</p>
+            <p>Đếm theo cạnh: mỗi cạnh có đúng \(2\) đầu mút, tổng cộng \(2|E|\).</p>
+            <p>Hai cách đếm cùng một tập hợp nên cho cùng kết quả.</p>
+            <p><span class="step">Bước 2 — Hệ quả.</span> Chia \(V\) thành \(V_c\) (bậc chẵn) và \(V_l\) (bậc lẻ):</p>
+            \[ \sum_{v \in V_l} \deg(v) = 2|E| - \sum_{v \in V_c} \deg(v). \]
+            <p>Vế phải là hiệu của hai số chẵn nên chẵn. Vế trái là tổng của \(|V_l|\) số lẻ, chỉ chẵn khi \(|V_l|\) chẵn.<span class="qed">∎</span></p>
+          </div></div>
+        </details>
+      </div>
+    </article>
+
+    <h3 class="block-title">Bài tập &amp; Lời giải <span class="count">3 bài</span></h3>
+
+    <article class="card is-exercise" data-cat="Toán rời rạc" data-view="roirac" id="rr-bt1">
+      <div class="card-body">
+        <h3>Bài 3.1 — Chứng minh bằng quy nạp</h3>
+        <div class="statement">
+          <p>Chứng minh rằng với mọi \(n \ge 1\), số \(n^3 + 2n\) chia hết cho \(3\).</p>
+        </div>
+        <details class="reveal">
+          <summary><span class="chev"></span>Lời giải chi tiết</summary>
+          <div class="proof"><div class="proof-inner">
+            <p>Đặt \(P(n)\): "\(3 \mid n^3 + 2n\)".</p>
+            <p><span class="step">Cơ sở.</span> \(n = 1\): \(1 + 2 = 3\) chia hết cho \(3\). Vậy \(P(1)\) đúng.</p>
+            <p><span class="step">Bước quy nạp.</span> Giả sử \(P(k)\) đúng, tức \(k^3 + 2k = 3m\) với \(m \in \mathbb{Z}\). Xét</p>
+            \[ (k+1)^3 + 2(k+1) = k^3 + 3k^2 + 3k + 1 + 2k + 2 = (k^3 + 2k) + 3(k^2 + k + 1). \]
+            <p>Thay giả thiết quy nạp vào:</p>
+            \[ (k+1)^3 + 2(k+1) = 3m + 3(k^2+k+1) = 3\big(m + k^2 + k + 1\big), \]
+            <p>chia hết cho \(3\). Vậy \(P(k+1)\) đúng.</p>
+            <p><span class="step">Kết luận.</span> Theo nguyên lý quy nạp, \(P(n)\) đúng với mọi \(n \ge 1\).<span class="qed">∎</span></p>
+          </div></div>
+        </details>
+      </div>
+    </article>
+
+    <article class="card is-exercise" data-cat="Toán rời rạc" data-view="roirac" id="rr-bt2">
+      <div class="card-body">
+        <h3>Bài 3.2 — Đếm bằng bao hàm – loại trừ</h3>
+        <div class="statement">
+          <p>Có bao nhiêu số nguyên trong đoạn \([1, 1000]\) không chia hết cho \(2\), cũng không chia hết cho \(3\) và cũng không chia hết cho \(5\)?</p>
+        </div>
+        <details class="reveal">
+          <summary><span class="chev"></span>Lời giải chi tiết</summary>
+          <div class="proof"><div class="proof-inner">
+            <p>Gọi \(A, B, C\) lần lượt là tập các số trong \([1,1000]\) chia hết cho \(2, 3, 5\).</p>
+            <p><span class="step">Bước 1 — Đếm từng tập.</span></p>
+            \[ |A| = 500,\quad |B| = 333,\quad |C| = 200. \]
+            <p><span class="step">Bước 2 — Giao đôi một.</span></p>
+            \[ |A \cap B| = \left\lfloor \tfrac{1000}{6} \right\rfloor = 166,\quad |A \cap C| = 100,\quad |B \cap C| = \left\lfloor \tfrac{1000}{15} \right\rfloor = 66. \]
+            <p><span class="step">Bước 3 — Giao ba tập.</span> \(|A \cap B \cap C| = \left\lfloor \tfrac{1000}{30} \right\rfloor = 33\).</p>
+            <p><span class="step">Bước 4 — Bao hàm loại trừ.</span></p>
+            \[ |A \cup B \cup C| = 500 + 333 + 200 - 166 - 100 - 66 + 33 = 734. \]
+            <p><span class="step">Kết luận.</span> Số cần tìm là \(1000 - 734 = 266\).<span class="qed">∎</span></p>
+          </div></div>
+        </details>
+      </div>
+    </article>
+
+    <article class="card is-exercise" data-cat="Toán rời rạc" data-view="roirac" id="rr-bt3">
+      <div class="card-body">
+        <h3>Bài 3.3 — Đồng dư và số dư lớn</h3>
+        <div class="statement">
+          <p>Tìm số dư khi chia \(3^{2026}\) cho \(7\).</p>
+        </div>
+        <details class="reveal">
+          <summary><span class="chev"></span>Lời giải chi tiết</summary>
+          <div class="proof"><div class="proof-inner">
+            <p><span class="step">Bước 1.</span> Vì \(7\) nguyên tố và \(\gcd(3,7) = 1\), định lý nhỏ Fermat cho</p>
+            \[ 3^{6} \equiv 1 \pmod 7. \]
+            <p><span class="step">Bước 2.</span> Chia số mũ cho \(6\): \(2026 = 6 \cdot 337 + 4\).</p>
+            <p><span class="step">Bước 3.</span> Do đó</p>
+            \[ 3^{2026} = \left(3^{6}\right)^{337} \cdot 3^{4} \equiv 1^{337} \cdot 3^4 = 81 \pmod 7. \]
+            <p><span class="step">Bước 4.</span> Mà \(81 = 7 \cdot 11 + 4\), nên \(3^{2026} \equiv 4 \pmod 7\).</p>
+            <p><span class="step">Kết luận.</span> Số dư cần tìm là \(4\).<span class="qed">∎</span></p>
+          </div></div>
+        </details>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ============================ ĐỀ THI THỬ ============================ -->
+<section class="view" id="view-dethi" hidden>
+  <div class="wrap">
+    <div class="page-head">
+      <h2>Đề thi thử</h2>
+      <p>Đề luyện tập và đề chính thức các năm. Bấm vào tên đề để mở file; thay liên kết trong mã nguồn khi bạn có đề mới.</p>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th scope="col">Tên đề</th>
+            <th scope="col">Học phần</th>
+            <th scope="col">Thời lượng</th>
+            <th scope="col">Trạng thái</th>
+          </tr>
+        </thead>
+        <tbody id="examBody">
+          <tr data-cat="Đề thi thử" data-view="dethi">
+            <td><a href="#" data-exam>Giải tích — Giữa kỳ 2025</a></td>
+            <td>Giải tích</td><td>90 phút</td>
+            <td><span class="badge badge-official">Đề chính thức</span></td>
+          </tr>
+          <tr data-cat="Đề thi thử" data-view="dethi">
+            <td><a href="#" data-exam>Giải tích — Luyện tập số 1</a></td>
+            <td>Giải tích</td><td>60 phút</td>
+            <td><span class="badge badge-answer">Có đáp án</span></td>
+          </tr>
+          <tr data-cat="Đề thi thử" data-view="dethi">
+            <td><a href="#" data-exam>Vi tích phân — Cuối kỳ 2025</a></td>
+            <td>Vi tích phân</td><td>120 phút</td>
+            <td><span class="badge badge-official">Đề chính thức</span></td>
+          </tr>
+          <tr data-cat="Đề thi thử" data-view="dethi">
+            <td><a href="#" data-exam>Vi tích phân — Bộ đề tích phân suy rộng</a></td>
+            <td>Vi tích phân</td><td>45 phút</td>
+            <td><span class="badge badge-answer">Có đáp án</span></td>
+          </tr>
+          <tr data-cat="Đề thi thử" data-view="dethi">
+            <td><a href="#" data-exam>Toán rời rạc — Giữa kỳ 2024</a></td>
+            <td>Toán rời rạc</td><td>75 phút</td>
+            <td><span class="badge badge-official">Đề chính thức</span></td>
+          </tr>
+          <tr data-cat="Đề thi thử" data-view="dethi">
+            <td><a href="#" data-exam>Toán rời rạc — Tổ hợp &amp; đồ thị</a></td>
+            <td>Toán rời rạc</td><td>60 phút</td>
+            <td><span class="badge badge-answer">Có đáp án</span></td>
+          </tr>
+          <tr data-cat="Đề thi thử" data-view="dethi">
+            <td><a href="#" data-exam>Đề tổng hợp Toán A — Ôn thi cuối kỳ</a></td>
+            <td>Cả ba học phần</td><td>150 phút</td>
+            <td><span class="badge badge-answer">Có đáp án</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="font-size:.88rem;color:var(--ink-2);margin-top:14px">Đề mới thường được thêm vào trước mỗi đợt thi khoảng hai tuần.</p>
+  </div>
+</section>
+
+<!-- ============================ LIÊN HỆ ============================ -->
+<section class="view" id="view-lienhe" hidden>
+  <div class="wrap">
+    <div class="page-head">
+      <h2>Liên hệ</h2>
+      <p>Thấy một chỗ chứng minh còn lấn cấn, hay muốn gửi thêm đề? Nhắn cho mình.</p>
+    </div>
+
+    <div class="contact-grid">
+      <div>
+        <ul class="info-list">
+          <li><div class="k">Email</div><div class="v">tendo.toana@example.com</div></li>
+          <li><div class="k">Facebook</div><div class="v">fb.com/tendo.toana</div></li>
+          <li><div class="k">Nhóm học tập</div><div class="v">Toán A HCMUS — Tendo Study Group</div></li>
+          <li><div class="k">Địa chỉ</div><div class="v">Khoa Toán - Tin học, Trường Đại học Khoa học Tự nhiên, ĐHQG-HCM</div></li>
+        </ul>
+        <p style="font-size:.9rem;color:var(--ink-2);margin-top:18px">Góp ý về một lời giải cụ thể, bạn ghi rõ mã bài (ví dụ “Bài 2.3”) để mình dò cho nhanh.</p>
+      </div>
+
+      <form class="contact" id="contactForm" novalidate>
+        <label for="c-name">Họ tên</label>
+        <input id="c-name" name="name" type="text" required placeholder="Nguyễn Văn A" />
+
+        <label for="c-email">Email</label>
+        <input id="c-email" name="email" type="email" required placeholder="ban@example.com" />
+
+        <label for="c-topic">Nội dung liên quan tới</label>
+        <select id="c-topic" name="topic">
+          <option>Giải tích</option>
+          <option>Vi tích phân</option>
+          <option>Toán rời rạc</option>
+          <option>Đề thi thử</option>
+          <option>Khác</option>
+        </select>
+
+        <label for="c-msg">Lời nhắn</label>
+        <textarea id="c-msg" name="message" required placeholder="Mình nghĩ bước 3 của Bài 1.2 nên giải thích rõ hơn vì…"></textarea>
+
+        <button class="btn btn-primary" type="submit">Gửi lời nhắn</button>
+        <p class="form-status" id="formStatus" role="status" hidden></p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ KẾT QUẢ TÌM KIẾM ============================ -->
+<section class="view" id="view-search" hidden>
+  <div class="wrap">
+    <div class="page-head">
+      <h2 id="searchTitle">Kết quả tìm kiếm</h2>
+      <p id="searchSub">Đang tìm…</p>
+    </div>
+
+    <div class="chips" id="chips">
+      <button class="chip" type="button" data-filter="all" aria-pressed="true">Tất cả</button>
+      <button class="chip" type="button" data-filter="Giải tích" aria-pressed="false">Giải tích</button>
+      <button class="chip" type="button" data-filter="Vi tích phân" aria-pressed="false">Vi tích phân</button>
+      <button class="chip" type="button" data-filter="Toán rời rạc" aria-pressed="false">Toán rời rạc</button>
+      <button class="chip" type="button" data-filter="Đề thi thử" aria-pressed="false">Đề thi thử</button>
+    </div>
+
+    <div id="results"></div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap foot-grid">
+    <span>Làm chủ Toán A cùng Tendo — tài liệu ôn tập phi lợi nhuận cho sinh viên Khoa Toán - Tin học.</span>
+    <span>Cập nhật 2026</span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+
+  /* ---------- 1. Chế độ Sáng / Tối ---------- */
+  var root = document.documentElement;
+  var saved = null;
+  try { saved = localStorage.getItem("tendo-theme"); } catch(e){}
+  if (saved === "dark" || saved === "light") {
+    root.setAttribute("data-theme", saved);
+  } else if (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches) {
+    root.setAttribute("data-theme", "dark");
+  }
+  document.getElementById("themeBtn").addEventListener("click", function(){
+    var next = root.getAttribute("data-theme") === "dark" ? "light" : "dark";
+    root.setAttribute("data-theme", next);
+    try { localStorage.setItem("tendo-theme", next); } catch(e){}
+  });
+
+  /* ---------- 2. MathJax: chỉ render khi khối trở nên hiển thị ---------- */
+  var mathReady = false;
+  var pending = [];
+  function typeset(el){
+    if (!el || el.dataset.typeset === "1") return;
+    if (!mathReady) { pending.push(el); return; }
+    el.dataset.typeset = "1";
+    window.MathJax.typesetPromise([el]).catch(function(err){ console.error(err); });
+  }
+  function whenMathReady(){
+    mathReady = true;
+    var q = pending.slice(); pending = [];
+    q.forEach(typeset);
+  }
+  var waitMath = setInterval(function(){
+    if (window.MathJax && window.MathJax.typesetPromise) {
+      clearInterval(waitMath);
+      window.MathJax.startup.promise.then(whenMathReady);
+    }
+  }, 60);
+
+  /* ---------- 3. Điều hướng giữa các mục ---------- */
+  var views = {};
+  ["home","giaitich","vitichphan","roirac","dethi","lienhe","search"].forEach(function(k){
+    views[k] = document.getElementById("view-" + k);
+  });
+  var tabs = Array.prototype.slice.call(document.querySelectorAll('.navbar button'));
+
+  var lastView = "home";
+  function show(name, keepScroll){
+    if (name !== "search") lastView = name;
+    Object.keys(views).forEach(function(k){ views[k].hidden = (k !== name); });
+    tabs.forEach(function(t){ t.setAttribute("aria-selected", String(t.dataset.goto === name)); });
+    typeset(views[name]);
+    if (!keepScroll) window.scrollTo({ top: 0, behavior: "auto" });
+    if (name !== "search") { history.replaceState(null, "", "#" + name); }
+  }
+
+  document.addEventListener("click", function(ev){
+    var trigger = ev.target.closest("[data-goto]");
+    if (!trigger) return;
+    ev.preventDefault();
+    var target = trigger.dataset.goto;
+    if (!views[target]) return;
+    if (searchInput.value) { searchInput.value = ""; clearBtn.classList.remove("on"); }
+    show(target);
+  });
+
+  /* ---------- 4. Mở phần chứng minh / lời giải ---------- */
+  document.querySelectorAll("details.reveal").forEach(function(d){
+    d.addEventListener("toggle", function(){
+      if (d.open) typeset(d.querySelector(".proof"));
+    });
+  });
+
+  /* ---------- 5. Chỉ mục tìm kiếm ---------- */
+  var index = [];
+  document.querySelectorAll("article.card[data-cat]").forEach(function(card){
+    var h = card.querySelector("h3");
+    var st = card.querySelector(".statement");
+    index.push({
+      id: card.id,
+      view: card.dataset.view,
+      cat: card.dataset.cat,
+      kind: card.classList.contains("is-theorem") ? "Định lý" : "Bài tập",
+      title: h ? h.textContent.trim() : "",
+      snippet: st ? st.textContent.replace(/\s+/g," ").trim().slice(0,180) : "",
+      hay: ((h ? h.textContent : "") + " " + (st ? st.textContent : "") + " " + card.textContent)
+    });
+  });
+  document.querySelectorAll("#examBody tr").forEach(function(tr, i){
+    var name = tr.querySelector("a").textContent.trim();
+    var cells = tr.querySelectorAll("td");
+    index.push({
+      id: "exam-" + i,
+      view: "dethi",
+      cat: "Đề thi thử",
+      kind: "Đề thi",
+      title: name,
+      snippet: cells[1].textContent.trim() + " · " + cells[2].textContent.trim() + " · " + cells[3].textContent.trim(),
+      hay: tr.textContent
+    });
+  });
+
+  function norm(s){
+    return s.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"").replace(/đ/g,"d");
+  }
+  index.forEach(function(it){ it.key = norm(it.hay); });
+
+  var searchInput = document.getElementById("search");
+  var clearBtn = document.getElementById("clearSearch");
+  var resultsBox = document.getElementById("results");
+  var searchSub = document.getElementById("searchSub");
+  var activeFilter = "all";
+  var lastQuery = "";
+
+  function escapeHtml(s){
+    return s.replace(/[&<>"']/g, function(c){
+      return { "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;", "'":"&#39;" }[c];
+    });
+  }
+
+  function runSearch(){
+    var raw = searchInput.value.trim();
+    lastQuery = raw;
+    clearBtn.classList.toggle("on", raw.length > 0);
+
+    if (!raw) { show(lastView); return; }
+
+    var terms = norm(raw).split(/\s+/).filter(Boolean);
+    var hits = index.filter(function(it){
+      if (activeFilter !== "all" && it.cat !== activeFilter) return false;
+      return terms.every(function(t){ return it.key.indexOf(t) !== -1; });
+    });
+
+    document.getElementById("searchTitle").textContent = 'Kết quả cho “' + raw + '”';
+    searchSub.textContent = hits.length
+      ? hits.length + " mục khớp với từ khoá của bạn."
+      : "Không có mục nào khớp. Thử một từ khoá ngắn hơn, ví dụ “Taylor”, “quy nạp”, “tích phân”.";
+
+    if (!hits.length) {
+      resultsBox.innerHTML = '<div class="empty"><strong>Chưa tìm thấy gì</strong>Gõ tên định lý, dạng bài hoặc tên học phần. Bạn cũng có thể duyệt trực tiếp từng mục trên thanh điều hướng.</div>';
+    } else {
+      resultsBox.innerHTML = hits.map(function(h){
+        return '<button class="hit" type="button" data-jump-view="' + h.view + '" data-jump-id="' + h.id + '">' +
+               '<div class="cat">' + escapeHtml(h.cat) + ' · ' + escapeHtml(h.kind) + '</div>' +
+               '<div class="ttl">' + escapeHtml(h.title) + '</div>' +
+               '<div class="snip">' + escapeHtml(h.snippet) + '</div></button>';
+      }).join("");
+    }
+    show("search", true);
+  }
+
+  var debounce;
+  searchInput.addEventListener("input", function(){
+    clearTimeout(debounce);
+    debounce = setTimeout(runSearch, 140);
+  });
+  searchInput.addEventListener("keydown", function(e){
+    if (e.key === "Escape") { searchInput.value = ""; runSearch(); }
+  });
+  clearBtn.addEventListener("click", function(){
+    searchInput.value = ""; searchInput.focus(); runSearch();
+  });
+
+  document.getElementById("chips").addEventListener("click", function(e){
+    var chip = e.target.closest(".chip");
+    if (!chip) return;
+    activeFilter = chip.dataset.filter;
+    document.querySelectorAll("#chips .chip").forEach(function(c){
+      c.setAttribute("aria-pressed", String(c === chip));
+    });
+    if (lastQuery) runSearch();
+  });
+
+  /* ---------- 6. Nhảy từ kết quả tới đúng thẻ nội dung ---------- */
+  resultsBox.addEventListener("click", function(e){
+    var hit = e.target.closest("[data-jump-id]");
+    if (!hit) return;
+    var view = hit.dataset.jumpView, id = hit.dataset.jumpId;
+    show(view);
+    setTimeout(function(){
+      var el = document.getElementById(id);
+      if (!el && id.indexOf("exam-") === 0) {
+        el = document.querySelectorAll("#examBody tr")[parseInt(id.slice(5), 10)];
+      }
+      if (!el) return;
+      el.scrollIntoView({ behavior: "smooth", block: "center" });
+      el.classList.add("flash");
+      setTimeout(function(){ el.classList.remove("flash"); }, 1700);
+    }, 60);
+  });
+
+  /* ---------- 7. Biểu mẫu liên hệ ---------- */
+  var form = document.getElementById("contactForm");
+  var status = document.getElementById("formStatus");
+  form.addEventListener("submit", function(e){
+    e.preventDefault();
+    if (!form.checkValidity()) {
+      status.hidden = false;
+      status.style.color = "#c2410c";
+      status.textContent = "Điền giúp mình họ tên, email hợp lệ và nội dung lời nhắn nhé.";
+      return;
+    }
+    status.hidden = false;
+    status.style.color = "";
+    status.textContent = "Đã ghi nhận. Trang tĩnh nên lời nhắn chưa được gửi đi — nối form với Formspree hoặc Google Form để nhận thật.";
+    form.reset();
+  });
+
+  /* ---------- 8. Mở đúng mục theo hash khi tải trang ---------- */
+  var initial = (location.hash || "#home").slice(1);
+  show(views[initial] ? initial : "home", true);
+})();
+</script>
+
+</body>
+</html>
