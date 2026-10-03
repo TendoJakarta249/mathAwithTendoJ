@@ -435,39 +435,49 @@ tôi hy vọng rằng các bạn sẽ tiếp cận cuốn sách này với một
 
     <article class="card is-theorem" data-cat="Giải tích" data-view="giaitich" id="gt-dl1">
       <div class="card-body">
-        <h3>Định lý 1.1 — Tính duy nhất của giới hạn dãy số</h3>
+        <h3>Định lý 1.1 — Tính chất Archimède</h3>
         <div class="statement">
-          <p>Nếu dãy số thực \((x_n)\) hội tụ thì giới hạn của nó là duy nhất: giả sử \(x_n \to a\) và \(x_n \to b\), khi đó \(a = b\).</p>
+          <p>Với mọi (x,y >0\), luôn tồn tại một số tự nhiên n sao cho</p>
+            <p>\[xn > y\]</p>
         </div>
         <details class="reveal">
           <summary><span class="chev"></span>Chứng minh</summary>
           <div class="proof"><div class="proof-inner">
-            <p>Phản chứng: giả sử \(a \neq b\), đặt \(\varepsilon = \dfrac{|a-b|}{2} \gt 0\).</p>
-            <p>Ta có</p>
-    <p>\begin{align*}
-        \displaystyle \frac{d}{du} \left[ u \ln(u + \sqrt{u^2 - 1}) \right] &= u.\displaystyle \frac{d}{du}\ln(u + \sqrt{u^2 - 1})+\ln(u + \sqrt{u^2 - 1}).\displaystyle \frac{d}{du}u \\&= u.\dfrac{\displaystyle \frac{d}{du}(u + \sqrt{u^2 - 1})}{u + \sqrt{u^2 - 1}} + \ln(u + \sqrt{u^2 - 1}) \\&= u.\dfrac{1+\dfrac{2u}{2\sqrt{u^2-1}}}{u + \sqrt{u^2 - 1}} + \ln(u + \sqrt{u^2 - 1}) \\& = \dfrac{u}{\sqrt{u^2-1}}+\ln(u + \sqrt{u^2 - 1})
-    \end{align*}</p><span class="qed">∎</span></p>
-          </div></div>
+              <p>Ta đơn giản chọn:</p>
+        <p>$$n = \left\lfloor \frac{y}{x} \right\rfloor + 1$$</p>
+              <p>Khi đó theo định nghĩa phần nguyên: $n \gt \dfrac{y}{x} \implies nx \gt y$.</p>
+              <p>Suy ra điều phải chứng minh. <span class="qed">∎</span></p>
+              </div></div>
         </details>
       </div>
     </article>
 
     <article class="card is-theorem" data-cat="Giải tích" data-view="giaitich" id="gt-dl2">
       <div class="card-body">
-        <h3>Định lý 1.2 — Nguyên lý kẹp (Squeeze Theorem)</h3>
+        <h3>Định lý 1.2 — Tính trù mật của \mathbb{Q} trong mathbb{R}</h3>
         <div class="statement">
-          <p>Cho ba dãy \((a_n), (b_n), (c_n)\) thoả \(a_n \le b_n \le c_n\) với mọi \(n \ge n_0\). Nếu \(\lim a_n = \lim c_n = L\) thì \((b_n)\) cũng hội tụ và \(\lim b_n = L\).</p>
+         <p>\(\forall x \in \mathbb{R}, \; \forall \varepsilon \gt 0, \quad \exists q \in \mathbb{Q}: \quad x - \varepsilon \lt q \lt x + \varepsilon\)</p>    
         </div>
         <details class="reveal">
           <summary><span class="chev"></span>Chứng minh</summary>
           <div class="proof"><div class="proof-inner">
-            <p>Cho trước \(\varepsilon \gt 0\) tuỳ ý.</p>
-            <p><span class="step">Bước 1.</span> Tồn tại \(N_1\) sao cho \(L - \varepsilon \lt a_n \lt L + \varepsilon\) với mọi \(n \ge N_1\), và tồn tại \(N_2\) sao cho \(L - \varepsilon \lt c_n \lt L + \varepsilon\) với mọi \(n \ge N_2\).</p>
-            <p><span class="step">Bước 2.</span> Đặt \(N = \max\{n_0, N_1, N_2\}\). Với mọi \(n \ge N\) ta có chuỗi bất đẳng thức</p>
-            \[ L - \varepsilon \lt a_n \le b_n \le c_n \lt L + \varepsilon, \]
-            <p>tức là \(|b_n - L| \lt \varepsilon\).</p>
-            <p><span class="step">Bước 3.</span> Vì \(\varepsilon\) tuỳ ý nên theo định nghĩa \(b_n \to L\).<span class="qed">∎</span></p>
-            <p><em>Ghi chú.</em> Đây là công cụ mạnh nhất để xử lý các dãy có \(\sin, \cos\) hoặc phần nguyên, chẳng hạn \(\dfrac{\sin n}{n} \to 0\) nhờ kẹp giữa \(-\dfrac{1}{n}\) và \(\dfrac{1}{n}\).</p>
+            <p>Áp dụng tính chất Archimede, ta có</p>
+                <p>\[\forall \varepsilon > 0, \quad \exists n \in \mathbb{N}^*: \quad n\varepsilon \gt 1\]</p>
+            <p>Cho trước $\varepsilon > 0$, khi đó tồn tại số tự nhiên \(n\) sao cho $n\varepsilon \gt 1$.</p>
+            <p>Xét một số thực $x$ bất kỳ, chọn:
+                $$m = \lfloor n(x - \varepsilon) \rfloor + 1$$
+            </p>
+            <p>Dễ thấy $m \in \mathbb{Z}$ và:
+                $$m \ge [n(x - \varepsilon) - 1] + 1 = n(x - \varepsilon)$$
+                Do $n \gt 0 \implies \dfrac{m}{n} \gt x - \varepsilon$.
+            </p>
+              <p>Mặt khác, do \(n\varepsilon \gt 1\)</p>
+                <p>\[m \lt n(x - \varepsilon) + 1 = nx + (1 - n\varepsilon) \lt nx \lt n(x + \varepsilon) \] </p>
+              <p>\implies \frac{m}{n} \ x + \varepsilon</p>
+              <p>Do đó<
+                $$x - \varepsilon \lt \frac{m}{n} \lt x + \varepsilon$$ </p>
+                <p> Mà $m \in \mathbb{Z}, n \in \mathbb{N}^* \implies \dfrac{m}{n} = q \in \mathbb{Q}$. </p>
+              <p>Từ đó suy ra điều phải chứng minh. <span class="qed">∎</span></p>
           </div></div>
         </details>
       </div>
