@@ -443,11 +443,10 @@ tôi hy vọng rằng các bạn sẽ tiếp cận cuốn sách này với một
           <summary><span class="chev"></span>Chứng minh</summary>
           <div class="proof"><div class="proof-inner">
             <p>Phản chứng: giả sử \(a \neq b\), đặt \(\varepsilon = \dfrac{|a-b|}{2} \gt 0\).</p>
-            <p><span class="step">Bước 1.</span> Vì \(x_n \to a\), tồn tại \(N_1\) sao cho \(|x_n - a| \lt \varepsilon\) với mọi \(n \ge N_1\).</p>
-            <p><span class="step">Bước 2.</span> Vì \(x_n \to b\), tồn tại \(N_2\) sao cho \(|x_n - b| \lt \varepsilon\) với mọi \(n \ge N_2\).</p>
-            <p><span class="step">Bước 3.</span> Lấy \(n = \max\{N_1, N_2\}\). Theo bất đẳng thức tam giác:</p>
-            \[ |a-b| \le |a - x_n| + |x_n - b| \lt \varepsilon + \varepsilon = |a-b|. \]
-            <p>Ta thu được \(|a-b| \lt |a-b|\), vô lý. Vậy \(a = b\).<span class="qed">∎</span></p>
+            <p>Ta có</p>
+    <p>\begin{align*}
+        \displaystyle \frac{d}{du} \left[ u \ln(u + \sqrt{u^2 - 1}) \right] &= u.\displaystyle \frac{d}{du}\ln(u + \sqrt{u^2 - 1})+\ln(u + \sqrt{u^2 - 1}).\displaystyle \frac{d}{du}u \\&= u.\dfrac{\displaystyle \frac{d}{du}(u + \sqrt{u^2 - 1})}{u + \sqrt{u^2 - 1}} + \ln(u + \sqrt{u^2 - 1}) \\&= u.\dfrac{1+\dfrac{2u}{2\sqrt{u^2-1}}}{u + \sqrt{u^2 - 1}} + \ln(u + \sqrt{u^2 - 1}) \\& = \dfrac{u}{\sqrt{u^2-1}}+\ln(u + \sqrt{u^2 - 1})
+    \end{align*}</p><span class="qed">∎</span></p>
           </div></div>
         </details>
       </div>
