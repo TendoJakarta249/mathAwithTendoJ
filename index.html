@@ -478,7 +478,7 @@ tôi hy vọng rằng các bạn sẽ tiếp cận cuốn sách này với một
             </p>
               <p>Mặt khác, do \(n\varepsilon \gt 1\)</p>
                 <p>\[m \lt n(x - \varepsilon) + 1 = nx + (1 - n\varepsilon) \lt nx \lt n(x + \varepsilon) \] </p>
-              <p>\[\implies \frac{m}{n} \ x + \varepsilon\]</p>
+              <p>\[\implies \frac{m}{n} \lt \ x + \varepsilon\]</p>
               <p>Do đó
                 $$x - \varepsilon \lt \frac{m}{n} \lt x + \varepsilon$$ </p>
                 <p> Mà $m \in \mathbb{Z}, n \in \mathbb{N}^* \implies \dfrac{m}{n} = q \in \mathbb{Q}$. </p>
@@ -498,12 +498,86 @@ tôi hy vọng rằng các bạn sẽ tiếp cận cuốn sách này với một
           <summary><span class="chev"></span>Chứng minh</summary>
           <div class="proof"><div class="proof-inner">
             <p>Giả sử \((x_n) \subset [a, b]\). Ta dùng phương pháp chia đôi liên tiếp.</p>
-            <p><span class="step">Bước 1.</span> Đặt \(I_0 = [a,b]\). Chia đôi \(I_0\); ít nhất một nửa chứa vô hạn phần tử của dãy — gọi nửa đó là \(I_1\).</p>
-            <p><span class="step">Bước 2.</span> Lặp lại quá trình, ta thu được dãy đoạn lồng nhau \(I_0 \supset I_1 \supset I_2 \supset \cdots\) với \(|I_k| = \dfrac{b-a}{2^k} \to 0\), mỗi \(I_k\) chứa vô hạn phần tử của dãy.</p>
-            <p><span class="step">Bước 3.</span> Theo nguyên lý đoạn lồng nhau (Cantor), tồn tại duy nhất \(c \in \bigcap_{k \ge 0} I_k\).</p>
-            <p><span class="step">Bước 4.</span> Xây dãy con: chọn \(n_1\) với \(x_{n_1} \in I_1\); do \(I_k\) chứa vô hạn chỉ số nên chọn được \(n_k \gt n_{k-1}\) với \(x_{n_k} \in I_k\). Khi đó</p>
-            \[ |x_{n_k} - c| \le |I_k| = \frac{b-a}{2^k} \xrightarrow{\ k \to \infty\ } 0. \]
-            <p>Vậy \(x_{n_k} \to c\).<span class="qed">∎</span></p>
+            <p>\noindent(i) Chia đoạn $[a, b]$ thành hai đoạn bởi trung điểm $c = \dfrac{a + b}{2}$. Đặt
+\begin{align*}
+J_1^- &= \{n \in \mathbb{N} : x_n \in [a, c]\}, \\
+J_1^+ &= \{n \in \mathbb{N} : x_n \in [c, b]\},
+\end{align*}
+ta thu được $J_1^- \cup J_1^+ = \mathbb{N}$.
+
+Do $\mathbb{N}$ vô hạn phần tử nên một trong hai tập $J_1^-$, $J_1^+$ phải vô hạn phần tử.
+\begin{itemize}
+    \item Nếu $J_1^-$ vô hạn phần tử: Chọn $n_1 \in J_1^-$;
+    \item Nếu $J_1^+$ vô hạn phần tử: Chọn $n_1 \in J_1^+$.
+\end{itemize}
+Cả hai trường hợp ta luôn chọn được $n_1$ thuộc một trong hai tập $J_1^-$, $J_1^+$ có vô hạn phần tử, ta ký hiệu lại tập đó là
+\[
+J_1 = \{n \in \mathbb{N} : x_n \in [a_1, b_1]\}, \quad x_{n_1} \in [a_1, b_1],
+\]
+trong đó $[a_1, b_1] \subset [a, b]$, $b_1 - a_1 = \dfrac{b - a}{2}$.
+
+\bigskip
+\noindent(ii) Tiếp tục ta chia đoạn $[a_1, b_1]$ thành hai đoạn bởi trung điểm $c_1 = \dfrac{a_1 + b_1}{2}$, như vậy
+\begin{align*}
+n_1 &\in J_1 = \{n \in \mathbb{N} : x_n \in [a_1, b_1]\} = J_2^- \cup J_2^+, \\
+J_2^- &= \{n \in J_1 : x_n \in [a_1, c_1]\}, \\
+J_2^+ &= \{n \in J_1 : x_n \in [c_1, b_1]\}.
+\end{align*}
+Do $J_1 = J_2^- \cup J_2^+$ vô hạn phần tử nên một trong hai tập $J_2^-$, $J_2^+$ phải vô hạn phần tử.
+\begin{itemize}
+    \item Nếu $J_2^-$ vô hạn phần tử: Chọn $n_2 \in J_2^-$ sao cho $n_2 > n_1$;
+    \item Nếu $J_2^+$ vô hạn phần tử: Chọn $n_2 \in J_2^+$ sao cho $n_2 > n_1$.
+\end{itemize}
+Cả hai trường hợp ta luôn chọn được $n_2 > n_1$ thuộc một trong hai tập $J_2^-$, $J_2^+$ có vô hạn phần tử, ta ký hiệu lại tập đó là
+\[
+J_2 = \{n \in \mathbb{N} : x_n \in [a_2, b_2]\}, \quad x_{n_2} \in [a_2, b_2],
+\]
+trong đó $[a_2, b_2] \subset [a_1, b_1] \subset [a, b]$, $b_2 - a_2 = \dfrac{b_1 - a_1}{2} = \dfrac{b - a}{2^2}$.
+
+\bigskip
+\noindent(iii) Tiếp tục ta chia đoạn $[a_2, b_2]$ thành hai đoạn bởi trung điểm $c_2 = \dfrac{a_2 + b_2}{2}$, như vậy
+\begin{align*}
+n_2 &\in J_2 = \{n \in \mathbb{N} : x_n \in [a_2, b_2]\} = J_3^- \cup J_3^+, \\
+J_3^- &= \{n \in J_1 : x_n \in [a_2, c_2]\}, \\
+J_3^+ &= \{n \in J_1 : x_n \in [c_2, b_2]\}.
+\end{align*}
+Do $J_2 = J_3^- \cup J_3^+$ vô hạn phần tử nên một trong hai tập $J_3^-$, $J_3^+$ phải vô hạn phần tử.
+\begin{itemize}
+    \item Nếu $J_3^-$ vô hạn phần tử: Chọn $n_3 \in J_3^-$ sao cho $n_3 > n_2$;
+    \item Nếu $J_3^+$ vô hạn phần tử: Chọn $n_3 \in J_3^+$ sao cho $n_3 > n_2$.
+\end{itemize}
+Cả hai trường hợp ta luôn chọn được $n_3 > n_2$ thuộc một trong hai tập $J_3^-$, $J_3^+$ có vô hạn phần tử, ta ký hiệu lại tập đó là
+\[
+J_3 = \{n \in \mathbb{N} : x_n \in [a_3, b_3]\}, \quad x_{n_3} \in [a_3, b_3],
+\]
+trong đó $[a_3, b_3] \subset [a_2, b_2] \subset [a_1, b_1] \subset [a, b]$, $b_3 - a_3 = \dfrac{b_2 - a_2}{2} = \dfrac{b_1 - a_1}{2^2} = \dfrac{b - a}{2^3}$.
+
+\begin{center}
+$\vdots$
+\end{center}
+
+Tiếp tục quá trình trên ta chọn được tập con vô hạn $J_k \equiv \{n \in J_{k-1} : x_n \in [a_k, b_k]\}$, của $\mathbb{N}$, gồm những $n$ sao cho $x_n \in [a_k, b_k]$, với
+\begin{align*}
+J_k &\equiv \{n \in J_{k-1} : x_n \in [a_k, b_k]\} \\
+J_k &\subset J_{k-1}, \quad [a_k, b_k] \subset [a_{k-1}, b_{k-1}], \\
+b_k - a_k &= \frac{b_{k-1} - a_{k-1}}{2} = \cdots = \frac{b - a}{2^k}, \quad \forall k \in \mathbb{N}.
+\end{align*}
+
+Chọn $n_k \in J_k$, sao cho $n_k > n_{k-1}$, ta có
+\begin{align*}
+x_{n_k} &\in [a_k, b_k] \subset [a_{k-1}, b_{k-1}] \subset \cdots \subset [a, b], \\
+b_k - a_k &= \frac{b - a}{2^k} \to 0, \quad \text{khi } k \to \infty.
+\end{align*}
+
+Từ đây, ta viết lại
+\begin{align*}
+a &\le a_{k-1} \le a_k \le x_{n_k} \le b_k \le b_{k-1} \le b, \quad \forall k \in \mathbb{N}, \\
+b_k - a_k &= \frac{b - a}{2^k} \to 0, \quad \text{khi } k \to \infty.
+\end{align*}
+
+Do đó dãy $\{a_k\}$ không giảm và bị chặn trên bởi $b$, do đó $\{a_k\}$ hội tụ về $a_*$, trong khi đó dãy $\{b_k\}$ không tăng và bị chặn dưới bởi $a$, do đó $\{b_k\}$ hội tụ về $b_*$.
+
+Mặt khác do $b_k - a_k = \dfrac{b - a}{2^k} \to 0$, nên ta suy ra $a_* = b_*$. Từ bất đẳng thức $a_k \le x_{n_k} \le b_k$, $\forall k \in \mathbb{N}$, và $a_k \to a_*$, $b_k \to a_*$, ta suy ra $x_{n_k} \to a_*$.<span class="qed">∎</span></p>
           </div></div>
         </details>
       </div>
