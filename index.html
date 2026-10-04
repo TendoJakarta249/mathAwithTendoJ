@@ -728,10 +728,48 @@ Mặt khác do $b_k - a_k = \dfrac{b - a}{2^k} \to 0$, nên ta suy ra $a_* = b_*
         <p>Khi đó $\forall x \in (L_1, L_2) \setminus \{y_0\}$, không tồn tại \(y\) sao cho \(f^{-1}(y) = x\)</p>
              <p>Tức $\forall x \in (L_1, L_2) \setminus \{y_0\}, \; f(x) \notin f([a, b])$. Điều này rõ ràng mâu thuẫn với tính toàn ánh của \(f\).
         </p>
+              <p>Chứng minh hoàn tất <span class="qed">∎</span></p>
           </div></div>
         </details>
       </div>
     </article>
+
+     <article class="card is-theorem" data-cat="Giải tích" data-view="giaitich" id="gt-dl6">
+      <div class="card-body">
+        <h3>Định lý 1.8 — Tính chất hàm số liên tục đều</h3>
+        <div class="statement">
+          <p>Cho \(f: [a;b] \to \mathbb{R}\) liên tục trên \([a;b]\). Khi đó \(f\) liên tục đều trên \([a;b]\)</p>
+        </div>
+        <details class="reveal">
+          <summary><span class="chev"></span>Chứng minh</summary>
+          <div class="proof"><div class="proof-inner">
+            <p>Giả sử phản chứng, $f$ không liên tục đều trên $[a, b]$. Khi đó:
+            $$\exists \varepsilon_0 &gt; 0, \; \forall \delta &gt; 0: \; 
+               \exists x_\delta, y_\delta: |x_\delta - y_\delta| &lt; \delta: \quad |f(x_\delta) - f(y_\delta)| \ge \varepsilon_0$$
+        </p>
+        <p>Với mỗi $n \in \mathbb{N}^*$, chọn $\delta = \dfrac{1}{n} &gt; 0$. Khi đó tồn tại $ x_n, y_n \in [a, b]$ và \(\varepsilon_0 > 0\) 
+           sao cho $|x_n - y_n| &lt; \dfrac{1}{n}$ sao cho
+            $$|f(x_n) - f(y_n)| \ge \varepsilon_0$$
+        </p>
+        <p>Do $x_n \in [a, b]$ nên theo Bolzano–Weierstrass, tồn tại $\{x_{n_k}\}$ hội tụ về $L \in [a, b]$.
+        </p>
+        <p>Mặt khác:
+            $$|y_{n_k} - L| \le |y_{n_k} - x_{n_k}| + |x_{n_k} - L| &lt; \frac{1}{n_k} + |x_{n_k} - L|$$
+            Do $\lim_{k \to \infty} \dfrac{1}{n_k} = 0$ nên $\dfrac{1}{n_k} &lt; \dfrac{\varepsilon}{2}, \; \forall k &gt; K_0$.
+        </p>
+             <p>Ngoài ra, $|x_{n_k} - L| &lt; \dfrac{\varepsilon}{2}, \; \forall k &gt; K_1$.</p>
+        <p>Chọn $K = \max\{K_0, K_1\}$ khi đó \[|y_{n_k} - L| \le \dfrac{\varepsilon}{2} + \dfrac{\varepsilon}{2} = \varepsilon, \; \forall k &gt; K\] 
+           Suy ra \(\{y_{n_k}\}\) hội tụ về $L$.
+        </p>
+        <p>Mà $f$ liên tục nên:
+            $$\varepsilon_0 \le |f(x_{n_k}) - f(y_{n_k})| \to |f(L) - f(L)| = 0$$
+        </p>
+        <p>Do đó $f$ liên tục đều. <span class="qed">∎</span></p>
+          </div></div>
+        </details>
+      </div>
+    </article>
+     
 
     <h3 class="block-title">Bài tập &amp; Lời giải <span class="count">3 bài</span></h3>
 
