@@ -672,6 +672,38 @@ Mặt khác do $b_k - a_k = \dfrac{b - a}{2^k} \to 0$, nên ta suy ra $a_* = b_*
       </div>
     </article>
 
+     <article class="card is-theorem" data-cat="Giải tích" data-view="giaitich" id="gt-dl7">
+      <div class="card-body">
+        <h3>Định lý 1.7 — Tiêu chuẩn Heine cho giới hạn hàm số</h3>
+        <div class="statement">
+          <p>Cho \(D\) là tập con khác rỗng của \(\mathbb{R}\) và \(a\) là một điểm tụ của \(D\)</p>
+           <p>Cho \(f: D \to \mathbb{R}\). Khi đó \(\lim\limits_{x \to a} f(x) = L\) khi và chỉ khi với mọi dãy 
+              số thực $\{x_n\} \subset D \setminus \{a\}$ thỏa mãn $x_n \to a$ thì $\lim f(x_n) = L$</p>
+        </div>
+        <details class="reveal">
+          <summary><span class="chev"></span>Chứng minh</summary>
+          <div class="proof"><div class="proof-inner">
+            <p><strong>i) $f$ bị chặn trên đoạn $[a, b]$, tức là $\exists M &gt; 0: |f(x)| \le M, \; \forall x \in [a, b]$.</strong></p>
+        <p class="proof-title">Chứng minh:</p>
+        <p class="bullet-line">
+            <span class="bullet-dot">•</span>Giả sử phản chứng: $\forall M &gt; 0, \; \exists x_M \in [a, b]: |f(x_M)| &gt; M$.
+        </p>
+        <p class="bullet-line">
+            <span class="bullet-dot">•</span>Điều đó có nghĩa: ta có $\{x_n\}$ thỏa mãn $x_n \in [a, b]: |f(x_n)| &gt; n, \; \forall n \in \mathbb{N}^*$.
+        </p>
+        <p class="bullet-line">
+            <span class="bullet-dot">•</span>Theo Bolzano–Weierstrass, $\exists \{x_{n_k}\}$ hội tụ về $x^* \in [a, b]$. Mà $f$ liên tục nên:
+            $$\lim_{k \to \infty} f(x_{n_k}) = f(x^*) \in \mathbb{R}$$
+        </p>
+        <p class="bullet-line">
+            <span class="bullet-dot">•</span>Tuy nhiên: $|f(x_{n_k})| &gt; n_k \ge k, \; \forall k \in \mathbb{N}^*$. Khi $k \to +\infty$ thì $|f(x_{n_k})| \to +\infty$ (mâu thuẫn).
+        </p>
+        <p>Do đó, ta suy ra đpcm.</p>
+          </div></div>
+        </details>
+      </div>
+    </article>
+
     <h3 class="block-title">Bài tập &amp; Lời giải <span class="count">3 bài</span></h3>
 
     <article class="card is-exercise" data-cat="Giải tích" data-view="giaitich" id="gt-bt1">
