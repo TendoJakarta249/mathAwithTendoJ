@@ -628,7 +628,7 @@ Mặt khác do $b_k - a_k = \dfrac{b - a}{2^k} \to 0$, nên ta suy ra $a_* = b_*
             <p> Do $\{x_n\}$ không bị chặn trên nên $\exists n_1 \in \mathbb{N}^*$ sao cho \[x_{n_1} &gt; 1\].
         </p>
         <p>Đặt $K_2 = \max\{2, x_1, x_2, \dots, x_{n_1}\}$. Do $\{x_n\}$ không bị chặn trên nên $\exists n_2 \in \mathbb{N}^*$ sao cho $x_{n_2} \gt K_2$. Khi đó:
-            $$\begin{cases} u_{n_2} &gt; 2 \\ n_2 &gt; n_1 \end{cases}$$
+            $$\begin{cases} x_{n_2} &gt; 2 \\ n_2 &gt; n_1 \end{cases}$$
         </p>
         <p> Cứ tiếp tục như thế, ta sẽ có:
             $$\begin{cases} x_{n_k} &gt; k \\ n_k &gt; n_{k-1} &gt; \dots &gt; n_1 \end{cases}$$
@@ -636,6 +636,35 @@ Mặt khác do $b_k - a_k = \dfrac{b - a}{2^k} \to 0$, nên ta suy ra $a_* = b_*
         <p>Do $k \to +\infty$ nên dãy $\{x_{n_k}\} \to +\infty$.
         </p>
         <p>Ta suy ra điều phải chứng minh <span class="qed">∎</span></p>
+          </div></div>
+        </details>
+      </div>
+    </article>
+
+     <article class="card is-theorem" data-cat="Giải tích" data-view="giaitich" id="gt-dl5">
+      <div class="card-body">
+        <h3>Định lý 1.5 — Tồn tại dãy con dần ra vô cùng</h3>
+        <div class="statement">
+          <p>Cho $\{x_n\}$ là một dãy số thực không bị chận trên. Khi đó tồn tại một dãy con \(\{x_{n_k}\}\) tiến ra vô cùng.</p>
+        </div>
+        <details class="reveal">
+          <summary><span class="chev"></span>Chứng minh</summary>
+          <div class="proof"><div class="proof-inner">
+            <p><strong>Chiều thuận ($\implies$):</strong> Giả sử $\lim\limits_{x \to a} f(x) = L$.</p>
+             <p>Theo định nghĩa giới hạn: $\forall \varepsilon > 0, \exists \delta > 0$ 
+                sao cho với mọi $x \in D$ thỏa mãn $0 \lt |x - a| \lt \delta$ thì \[|f(x) - L| \lt \varepsilon\] 
+         Giả sử dãy $\{x_n\} \subset D \setminus \{a\}$ thỏa mãn $x_n \to a$. Với $\delta > 0$ ở trên, tồn tại $N \in \mathbb{N}$ sao cho $\forall n > N$
+             \[
+    0 \lt |x_n - a| \lt \delta \implies |f(x_n) - L| \lt \varepsilon
+    \] Suy ra $f(x_n) \to L$. </p>
+<p><strong>Chiều đảo ($\impliedby$):</strong> Giả sử phản chứng $L \ne \lim\limits_{x \to a} f(x)$.</p>
+             <p>Khi đó  \[
+    \exists \varepsilon_0 > 0, \forall \delta > 0, \exists x \in D \cap (a - \delta, a + \delta) \setminus \{a\}: \quad |f(x) - L| \ge \varepsilon_0
+    \] Với mỗi $n \in \mathbb{N}^*$, chọn $\delta_n = \dfrac{1}{n} > 0$. Khi đó tồn tại phần tử $x_n \in D \setminus \{a\}$ sao cho 
+                \(|x_n - a| < \frac{1}{n}\) và \[\quad |f(x_n) - L| \ge \varepsilon_0
+    \] Khi đó ta thấy, Dãy $\{x_n\} \subset D \setminus \{a\}$ có $|x_n - a| \lt \dfrac{1}{n} \to 0$, nên \(x_n \to a\)</p>
+             <p>Tuy nhiên $|f(x_n) - L| \ge \varepsilon_0 > 0$ nên dãy $\{f(x_n)\}$ không thể hội tụ về $L$. Điều này mâu thuẫn với giả thiết.</p>
+             <p>Vậy $L = \lim\limits_{x \to a} f(x)$. Ta suy ra điều phải chứng minh <span class="qed">∎</span></p>
           </div></div>
         </details>
       </div>
