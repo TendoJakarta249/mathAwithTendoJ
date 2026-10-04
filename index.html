@@ -577,18 +577,39 @@ Mặt khác do $b_k - a_k = \dfrac{b - a}{2^k} \to 0$, nên ta suy ra $a_* = b_*
 
     <article class="card is-theorem" data-cat="Giải tích" data-view="giaitich" id="gt-dl4">
       <div class="card-body">
-        <h3>Định lý 1.4 — Định lý giá trị trung gian</h3>
+        <h3>Định lý 1.4 — Tiêu chuẩn Cauchy cho dãy số thực</h3>
         <div class="statement">
-          <p>Cho \(f\) liên tục trên \([a,b]\) và \(y_0\) nằm giữa \(f(a)\) và \(f(b)\). Khi đó tồn tại \(c \in [a,b]\) sao cho \(f(c) = y_0\).</p>
+          <p>Cho $\{x_n\}$ là một dãy số thực. Khi đó:
+\[
+\{x_n\} \text{ hội tụ} \iff \{x_n\} \text{ là dãy Cauchy}
+\]</p>
         </div>
         <details class="reveal">
           <summary><span class="chev"></span>Chứng minh</summary>
           <div class="proof"><div class="proof-inner">
-            <p>Không mất tổng quát, giả sử \(f(a) \lt y_0 \lt f(b)\). Đặt \(g(x) = f(x) - y_0\), khi đó \(g\) liên tục, \(g(a) \lt 0 \lt g(b)\); ta cần chỉ ra \(g\) có nghiệm.</p>
-            <p><span class="step">Bước 1.</span> Đặt \(S = \{x \in [a,b] : g(x) \lt 0\}\). Tập \(S\) khác rỗng (chứa \(a\)) và bị chặn trên bởi \(b\), nên theo tiên đề supremum tồn tại \(c = \sup S\).</p>
-            <p><span class="step">Bước 2.</span> Giả sử \(g(c) \lt 0\). Do \(g\) liên tục tại \(c\), tồn tại \(\delta \gt 0\) sao cho \(g \lt 0\) trên \((c - \delta, c + \delta)\). Vậy có điểm lớn hơn \(c\) vẫn thuộc \(S\) — mâu thuẫn với \(c = \sup S\).</p>
-            <p><span class="step">Bước 3.</span> Giả sử \(g(c) \gt 0\). Tương tự, tồn tại \(\delta \gt 0\) để \(g \gt 0\) trên \((c-\delta, c+\delta)\), suy ra \(c - \delta\) đã là một chặn trên của \(S\) — mâu thuẫn với tính nhỏ nhất của supremum.</p>
-            <p><span class="step">Bước 4.</span> Vậy chỉ còn \(g(c) = 0\), tức \(f(c) = y_0\).<span class="qed">∎</span></p>
+            <p>\textbf{Chiều thuận ($\implies$):} Giả sử $\{x_n\}$ hội tụ về $L \in \mathbb{R}$, tức là $\lim\limits_{n \to \infty} x_n = L$.</p>
+             <p>Khi đó \(\forall \varepsilon > 0, \; \exists N \in \mathbb{N}^*$ sao cho $\forall n > N\) \[
+    |x_n - L| < \frac{\varepsilon}{2}
+    \] Do đó, với mọi $m, n > N$:
+    \[
+    |x_m - x_n| \le |x_m - L| + |x_n - L| \lt \frac{\varepsilon}{2} + \frac{\varepsilon}{2} = \varepsilon
+    \] Suy ra $\{x_n\}$ là dãy Cauchy.</p>
+<p>\textbf{Chiều đảo ($\impliedby$):} Giả sử $\{x_n\}$ là dãy Cauchy.</p>
+   <p>Chọn $\varepsilon = 1$, tồn tại $N \in \mathbb{N}^*$ sao cho $|x_m - x_n| < 1$ với mọi $m, n > N$.</p>
+<p>Suy ra với mọi $m > N$:
+    \[
+    |x_m| \le |x_m - x_{N+1}| + |x_{N+1}| < 1 + |x_{N+1}|
+    \] Đặt $M = \max\{|x_1|, |x_2|, \dots, |x_N|, 1 + |x_{N+1}|\}$, ta có \[$|x_m| \le M$ \forall $m \in \mathbb{N}^*$\] tức dãy $\{x_n\}$ bị chặn.</p>
+<p>Theo định lý Bolzano--Weierstrass, tồn tại dãy con $\{x_{n_k}\}$ hội tụ về một giới hạn $L \in \mathbb{R}$.</p> 
+    <p> Vì $\{x_n\}$ là dãy Cauchy nên với mọi $\varepsilon > 0$, tồn tại $N_\varepsilon > 0$ sao cho:
+    \[
+    |x_m - x_n| < \frac{\varepsilon}{2}, \quad \forall m, n > N_\varepsilon
+    \]
+    Do $n_k \ge k$, chọn $k \ge K_0$ sao cho $n_k > N_\varepsilon$ và đồng thời $|x_{n_k} - L| \lt \dfrac{\varepsilon}{2}$.</p> <p>Khi đó với mọi $m > N_\varepsilon$:
+    \[
+    |x_m - L| \le |x_m - x_{n_k}| + |x_{n_k} - L| < \frac{\varepsilon}{2} + \frac{\varepsilon}{2} = \varepsilon
+    \]
+    Vậy $\{x_n\}$ hội tụ về $L$.</p> <p>Ta suy ra điều phải chứng minh <span class="qed">∎</span></p>
           </div></div>
         </details>
       </div>
