@@ -674,66 +674,59 @@ Mặt khác do $b_k - a_k = \dfrac{b - a}{2^k} \to 0$, nên ta suy ra $a_* = b_*
 
      <article class="card is-theorem" data-cat="Giải tích" data-view="giaitich" id="gt-dl7">
       <div class="card-body">
-        <h3>Định lý 1.7 — Tiêu chuẩn Heine cho giới hạn hàm số</h3>
+        <h3>Định lý 1.7 — Định lý của hàm số liên tục trên một đoạn</h3>
         <div class="statement">
-          <p>Cho \(D\) là tập con khác rỗng của \(\mathbb{R}\) và \(a\) là một điểm tụ của \(D\)</p>
-           <p>Cho \(f: D \to \mathbb{R}\). Khi đó \(\lim\limits_{x \to a} f(x) = L\) khi và chỉ khi với mọi dãy 
-              số thực $\{x_n\} \subset D \setminus \{a\}$ thỏa mãn $x_n \to a$ thì $\lim f(x_n) = L$</p>
+           <p>Cho \(f: \[a;b\] \to \mathbb{R}\) liên tục trên \[a;b\]. Khi đó</p>
+           <p>i) $f$ bị chặn trên đoạn $[a, b]$, tức là $\exists M &gt; 0: |f(x)| \le M, \; \forall x \in [a, b]$.</p>
+           <p>ii) $f$ đạt giá trị lớn nhất và nhỏ nhất trên $[a, b]$, tức là:</p>
+           <p>$$\exists x_*, x^* \in [a, b]: \quad f(x_*) \le f(x) \le f(x^*), \quad \forall x \in [a, b]$$</p>
+        <p>Trong đó: $f(x_*) = \min f([a, b]) = \min \{f(x) \mid x \in [a, b]\}$, $f(x^*) = \max f([a, b]) = \max \{f(x) \mid x \in [a, b]\}$.</p>
+           <p>iii) Nếu $f$ là một song ánh từ $f: [a, b] \to f([a, b])$ thì ánh 
+              xạ ngược $f^{-1}: f([a, b]) \to [a, b]$ cũng liên tục trên toàn $f([a, b])$.</p>
         </div>
         <details class="reveal">
           <summary><span class="chev"></span>Chứng minh</summary>
           <div class="proof"><div class="proof-inner">
             <p><strong>i) $f$ bị chặn trên đoạn $[a, b]$, tức là $\exists M &gt; 0: |f(x)| \le M, \; \forall x \in [a, b]$.</strong></p>
         <p class="proof-title">Chứng minh:</p>
-        <p class="bullet-line">
-            <span class="bullet-dot">•</span>Giả sử phản chứng: $\forall M &gt; 0, \; \exists x_M \in [a, b]: |f(x_M)| &gt; M$.
+        <p>Giả sử phản chứng: $\forall M &gt; 0, \; \exists x_M \in [a, b]: |f(x_M)| &gt; M$.
         </p>
-        <p class="bullet-line">
-            <span class="bullet-dot">•</span>Điều đó có nghĩa: ta có $\{x_n\}$ thỏa mãn $x_n \in [a, b]: |f(x_n)| &gt; n, \; \forall n \in \mathbb{N}^*$.
+        <p>Điều đó có nghĩa: ta có $\{x_n\}$ thỏa mãn $x_n \in [a, b]: |f(x_n)| &gt; n, \; \forall n \in \mathbb{N}^*$.
         </p>
-        <p class="bullet-line">
-            <span class="bullet-dot">•</span>Theo Bolzano–Weierstrass, $\exists \{x_{n_k}\}$ hội tụ về $x^* \in [a, b]$. Mà $f$ liên tục nên:
+        <p>Theo Bolzano–Weierstrass, $\exists \{x_{n_k}\}$ hội tụ về $x^* \in [a, b]$. Mà $f$ liên tục nên:
             $$\lim_{k \to \infty} f(x_{n_k}) = f(x^*) \in \mathbb{R}$$
         </p>
-        <p class="bullet-line">
-            <span class="bullet-dot">•</span>Tuy nhiên: $|f(x_{n_k})| &gt; n_k \ge k, \; \forall k \in \mathbb{N}^*$. Khi $k \to +\infty$ thì $|f(x_{n_k})| \to +\infty$ (mâu thuẫn).
+        <p>Tuy nhiên: $|f(x_{n_k})| &gt; n_k \ge k, \; \forall k \in \mathbb{N}^*$. Khi $k \to +\infty$ thì $|f(x_{n_k})| \to +\infty$ (mâu thuẫn).
         </p>
-        <p>Do đó, ta suy ra đpcm.</p>
+        <p>Chứng minh hoàn tất <span class="qed">∎</span></p>
              <p><strong>ii) $f$ đạt giá trị lớn nhất và nhỏ nhất trên $[a, b]$, tức là:</strong></p>
         <p>$$\exists x_*, x^* \in [a, b]: \quad f(x_*) \le f(x) \le f(x^*), \quad \forall x \in [a, b]$$</p>
         <p>Trong đó: $f(x_*) = \min f([a, b]) = \min \{f(x) \mid x \in [a, b]\}$, $f(x^*) = \max f([a, b]) = \max \{f(x) \mid x \in [a, b]\}$.</p>
         <p class="proof-title">Chứng minh:</p>
-        <p class="bullet-line">
-            <span class="bullet-dot">•</span>Đặt $A = \{f(x) \mid x \in [a, b]\}$. Do $A \ne \varnothing$ và $f(x)$ bị chặn nên tồn tại $\sup A$ và $\inf A$. Đặt $M = \sup A$.
+        <p>Đặt $A = \{f(x) \mid x \in [a, b]\}$. Do $A \ne \varnothing$ và $f(x)$ bị chặn nên tồn tại $\sup A$ và $\inf A$. Đặt $M = \sup A$.
         </p>
-        <p class="bullet-line">
-            <span class="bullet-dot">•</span>Với mỗi $n \in \mathbb{N}$, chọn $\varepsilon = \dfrac{1}{n} &gt; 0$. Khi đó:
+        <p>Với mỗi $n \in \mathbb{N}$, chọn $\varepsilon = \dfrac{1}{n} &gt; 0$. Khi đó:
             $$\exists x_n \in [a, b]: \quad M - \frac{1}{n} &lt; f(x_n) \le M$$
         </p>
-        <p class="bullet-line">
-            <span class="bullet-dot">•</span>Theo Bolzano–Weierstrass, tồn tại $\{x_{n_k}\} \to x^* \in [a, b]$. Do $f$ liên tục nên $\lim_{k \to \infty} f(x_{n_k}) = f(x^*)$.
+        <p>Theo Bolzano–Weierstrass, tồn tại $\{x_{n_k}\} \to x^* \in [a, b]$. Do $f$ liên tục nên $\lim_{k \to \infty} f(x_{n_k}) = f(x^*)$.
         </p>
-        <p class="bullet-line">
-            <span class="bullet-dot">•</span>Mặt khác: $M - \dfrac{1}{n_k} &lt; f(x_{n_k}) \le M, \; \forall k$. Cho $k \to \infty \implies M \le f(x^*) \le M \implies f(x^*) = M$.
+        <p>Mặt khác: $M - \dfrac{1}{n_k} &lt; f(x_{n_k}) \le M, \; \forall k$. Cho $k \to \infty \implies M \le f(x^*) \le M \implies f(x^*) = M$.
         </p>
-        <p class="bullet-line">
-            <span class="bullet-dot">•</span>Chứng minh tương tự với $\inf A \implies$ đpcm.
+        <p>Chứng minh tương tự với $m =\inf A$, ta cũng có \(m= f(x_{*}\) với \(x_{*} \in \[a;b\]\)
         </p>
+             <p> Do \(m \le f(x) \le M\) với mọi \(x \in \[a;b\]\) nên ta dễ dàng suy ra điều phải chứng minh <span class="qed">∎</span></p>
 
         <p><strong>iii) Nếu $f$ là một song ánh từ $f: [a, b] \to f([a, b])$ thì ánh xạ ngược $f^{-1}: f([a, b]) \to [a, b]$ cũng liên tục trên toàn $f([a, b])$.</strong></p>
         <p class="proof-title">Chứng minh:</p>
-        <p class="bullet-line">
-            <span class="bullet-dot">•</span>Do $f$ liên tục và song ánh nên $f$ đồng biến hoặc nghịch biến trên $[a, b]$. Không mất tính tổng quát, giả sử $f$ đồng biến. Khi đó $f^{-1}$ cũng đồng biến trên $f([a, b])$.
+        <p>Do $f$ liên tục và song ánh nên $f$ đồng biến hoặc nghịch biến trên $[a, b]$. Không mất tính tổng quát, giả sử $f$ đồng biến. Khi đó $f^{-1}$ cũng đồng biến trên $f([a, b])$.
         </p>
-        <p class="bullet-line">
-            <span class="bullet-dot">•</span>Thật vậy, $\forall y_1, y_2 \in f([a, b])$ mà $y_1 &gt; y_2$. Khi đó $\exists x_1, x_2 \in [a, b]$ sao cho $f(x_1) = y_1$ và $f(x_2) = y_2$. Do $f$ đồng biến $\implies x_1 &gt; x_2 \implies f^{-1}(y_1) = x_1 &gt; x_2 = f^{-1}(y_2)$.
-        </p>
-        <p class="bullet-line">
-            <span class="bullet-dot">•</span>Nếu $f^{-1}$ không liên tục tại $y_0 \in f([a, b])$, tức là:
+        <p>Thật vậy, $\forall y_1, y_2 \in f([a, b])$ mà $y_1 &gt; y_2$.Tồn tại $x_1, x_2 \in [a, b]$ sao cho $f(x_1) = y_1$ và $f(x_2) = y_2$. 
+           Do $f$ đồng biến nên \[ x_1 &gt; x_2 \implies f^{-1}(y_1) = x_1 &gt; x_2 = f^{-1}(y_2)\]
+       Nếu $f^{-1}$ không liên tục tại $y_0 \in f([a, b])$, tức là:
             $$\lim_{y \to y_0^-} f^{-1}(y) = L_1 &lt; L_2 = \lim_{y \to y_0^+} f^{-1}(y)$$
         </p>
-        <p class="bullet-line">
-            <span class="bullet-dot">•</span>Khi đó $\forall x \in (L_1, L_2) \setminus \{y_0\}, \; \nexists y: f^{-1}(y) = x$. Tức $\forall x \in (L_1, L_2) \setminus \{y_0\}, \; f(x) \notin f([a, b])$. Điều này rõ ràng mâu thuẫn.
+        <p>Khi đó $\forall x \in (L_1, L_2) \setminus \{y_0\}$, không tồn tại \(y\) sao cho \(f^{-1}(y) = x\)</p>
+             <p>Tức $\forall x \in (L_1, L_2) \setminus \{y_0\}, \; f(x) \notin f([a, b])$. Điều này rõ ràng mâu thuẫn với tính toàn ánh của \(f\).
         </p>
           </div></div>
         </details>
