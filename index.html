@@ -588,7 +588,7 @@ Mặt khác do $b_k - a_k = \dfrac{b - a}{2^k} \to 0$, nên ta suy ra $a_* = b_*
           <summary><span class="chev"></span>Chứng minh</summary>
           <div class="proof"><div class="proof-inner">
             <p><strong>Chiều thuận ($\implies$):</strong> Giả sử $\{x_n\}$ hội tụ về $L \in \mathbb{R}$, tức là $\lim\limits_{n \to \infty} x_n = L$.</p>
-             <p>Khi đó \(\forall \varepsilon > 0, \; \exists N \in \mathbb{N}^* sao cho \forall n > N\) \[
+             <p>Khi đó \(\forall \varepsilon > 0, \; \exists N \in \mathbb{N}^*\) sao cho \(\forall n > N\) \[
     |x_n - L| < \frac{\varepsilon}{2}
     \] Do đó, với mọi $m, n > N$:
     \[
@@ -601,13 +601,13 @@ Mặt khác do $b_k - a_k = \dfrac{b - a}{2^k} \to 0$, nên ta suy ra $a_* = b_*
     |x_m| \le |x_m - x_{N+1}| + |x_{N+1}| < 1 + |x_{N+1}|
     \] Đặt $M = \max\{|x_1|, |x_2|, \dots, |x_N|, 1 + |x_{N+1}|\}$, ta có \[$|x_m| \le M \forall $m \in \mathbb{N}^*\] tức dãy $\{x_n\}$ bị chặn.</p>
 <p>Theo định lý Bolzano--Weierstrass, tồn tại dãy con $\{x_{n_k}\}$ hội tụ về một giới hạn $L \in \mathbb{R}$.</p>
-             <p>Khi đó \(\forall \varepsilon > 0, \; \exists N_{1} \in \mathbb{N}^* sao cho \forall n > N_{1}\) \[
-    |x_{n_k} - L| < \frac{\varepsilon}{2}</p>
+             <p>Khi đó \(\forall \varepsilon > 0, \; \exists N_{1} \in \mathbb{N}^*\) sao cho \(\forall n > N_{1}\) \[
+    |x_{n_k} - L| < \frac{\varepsilon}{2}\]</p>
     <p> Vì $\{x_n\}$ là dãy Cauchy nên với mọi $\varepsilon > 0$, tồn tại $N_\varepsilon > 0$ sao cho:
     \[
     |x_m - x_n| < \frac{\varepsilon}{2}, \quad \forall m, n > N_\varepsilon
     \]
-    Do $n_k \ge k$, chọn $k \ge K_0$ sao cho $n_k > \max{N_\varepsilon$, N_{1}}. Khi đó với mọi $m > n_{k}$:
+    Do $n_k \ge k$, chọn $k \ge K_0$ sao cho $n_k > \max\{N_\varepsilon$, N_{1}\}$. Khi đó với mọi $m > n_{k}$:
     \[
     |x_m - L| \le |x_m - x_{n_k}| + |x_{n_k} - L| < \frac{\varepsilon}{2} + \frac{\varepsilon}{2} = \varepsilon
     \]
