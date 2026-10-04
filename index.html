@@ -620,26 +620,22 @@ Mặt khác do $b_k - a_k = \dfrac{b - a}{2^k} \to 0$, nên ta suy ra $a_* = b_*
       <div class="card-body">
         <h3>Định lý 1.5 — Tồn tại dãy con dần ra vô cùng</h3>
         <div class="statement">
-          <p>Cho $\{x_n\}$ là một dãy số thực không bị chận trên. Khi đó tồn tại một dãy con \(x_{n_k}\) tiến ra vô cùng.</p>
+          <p>Cho $\{x_n\}$ là một dãy số thực không bị chận trên. Khi đó tồn tại một dãy con \(\{x_{n_k}\}\) tiến ra vô cùng.</p>
         </div>
         <details class="reveal">
           <summary><span class="chev"></span>Chứng minh</summary>
           <div class="proof"><div class="proof-inner">
-            <p class="bullet-line">
-            <span class="bullet-dot">•</span>Do $\{u_n\}$ không bị chặn trên nên $\exists n_1 \in \mathbb{N}^*: u_{n_1} &gt; 1$.
+            <p> Do $\{x_n\}$ không bị chặn trên nên $\exists n_1 \in \mathbb{N}^*$ sao cho \[x_{n_1} &gt; 1\].
         </p>
-        <p class="bullet-line">
-            <span class="bullet-dot">•</span>Đặt $K_2 = \max\{2, u_1, u_2, \dots, u_{n_1}\}$. Do $\{u_n\}$ không bị chặn trên nên $\exists n_2 \in \mathbb{N}^*$ sao cho $u_{n_2} &gt; K_2$. Khi đó:
+        <p>Đặt $K_2 = \max\{2, x_1, x_2, \dots, x_{n_1}\}$. Do $\{x_n\}$ không bị chặn trên nên $\exists n_2 \in \mathbb{N}^*$ sao cho $x_{n_2} \gt K_2$. Khi đó:
             $$\begin{cases} u_{n_2} &gt; 2 \\ n_2 &gt; n_1 \end{cases}$$
         </p>
-        <p class="bullet-line">
-            <span class="bullet-dot">•</span>Cứ tiếp tục, ta sẽ có:
-            $$\begin{cases} u_{n_k} &gt; k \\ n_k &gt; n_{k-1} &gt; \dots &gt; n_1 \end{cases}$$
+        <p> Cứ tiếp tục như thế, ta sẽ có:
+            $$\begin{cases} x_{n_k} &gt; k \\ n_k &gt; n_{k-1} &gt; \dots &gt; n_1 \end{cases}$$
         </p>
-        <p class="bullet-line">
-            <span class="bullet-dot">•</span>Do $k \to +\infty$ nên dãy $\{u_{n_k}\} \to +\infty$.
+        <p>Do $k \to +\infty$ nên dãy $\{x_{n_k}\} \to +\infty$.
         </p>
-        <p class="qed">$\square$</p>
+        <p>Ta suy ra điều phải chứng minh <span class="qed">∎</span></p>
           </div></div>
         </details>
       </div>
